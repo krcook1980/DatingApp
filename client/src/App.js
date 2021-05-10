@@ -4,25 +4,25 @@ import Nav from "./components/Nav";
 import Input from "./components/Input";
 import Button from "./components/Button";
 import API from "./utils/API";
-import { RecipeList, RecipeListItem } from "./components/RecipeList";
+import { ProfileList, ProfileListItem } from "./components/ProfileList";
 import { Container, Row, Col } from "./components/Grid";
 
 function App() {
 
-  const [recipes, setRecipes] = useState([]);
-  const [recipeSearch, setRecipeSearch] = useState("");
+  const [profile, setProfile] = useState([]);
+  const [profileSearch, setProfileSearch] = useState("");
 
   const handleInputChange = event => {
     // Destructure the name and value properties off of event.target
     // Update the appropriate state
     const { value } = event.target;
-    setRecipeSearch(value);
+    setProfileSearch(value);
   };
 
   const handleFormSubmit = event => {
     // When the form is submitted, prevent its default behavior, get recipes update the recipes state
     event.preventDefault();
-    API.getRecipes(recipeSearch)
+    API.getRecipes(profileSearch)
       .then(res => {
         console.log("I am api" + res.data)
         setRecipes(res.data)
@@ -42,8 +42,8 @@ function App() {
                 <Row>
                   <Col size="xs-9 sm-10">
                     <Input
-                      name="recipeSearch"
-                      value={recipeSearch}
+                      name="profileSearch"
+                      value={profileSearch}
                       onChange={handleInputChange}
                       placeholder="Search For a Recipe"
                     />
@@ -65,17 +65,17 @@ function App() {
         <Row>
           <Col size="xs-12">
             <h1>Recipes</h1>
-            <RecipeList >
+            <ProfileList >
               {recipes.map((recipe, index) => {
                 return (
 
-                  <RecipeListItem recipe={recipe} key={index} />
+                  <ProfileListItem recipe={recipe} key={index} />
 
                 )
 
               })
               }
-            </RecipeList>
+            </ProfileList>
           </Col>
         </Row>
       </Container>
@@ -88,30 +88,30 @@ export default App;
 
 
 
- {/* row one - SSC & ICS */}
- <div className="row">
- <div className="col-md-6">
-     <Card card={Images[0]} />
- </div>
- <div className="col-md-6">
-     <Card card={Images[1]} />
- </div>
-{/* </div> */}
-{/* row two - JES & IO */}
-{/* <div className="row"> */}
- <div className="col-md-6">
-     <Card card={Images[4]} />
- </div>
- <div className="col-md-6">
-     <Card card={Images[2]} />
- </div>
-{/* </div> */}
-{/* row 3 - WDA &  BEA*/}
-{/* <div className="row"> */}
- <div className="col-md-6">
-     <Card card={Images[5]} />
- </div>
- <div className="col-md-6">
-     <Card card={Images[3]} />
- </div>
+{/* row one - SSC & ICS */ }
+<div className="row">
+  <div className="col-md-6">
+    <Card card={Images[0]} />
+  </div>
+  <div className="col-md-6">
+    <Card card={Images[1]} />
+  </div>
+  {/* </div> */}
+  {/* row two - JES & IO */}
+  {/* <div className="row"> */}
+  <div className="col-md-6">
+    <Card card={Images[4]} />
+  </div>
+  <div className="col-md-6">
+    <Card card={Images[2]} />
+  </div>
+  {/* </div> */}
+  {/* row 3 - WDA &  BEA*/}
+  {/* <div className="row"> */}
+  <div className="col-md-6">
+    <Card card={Images[5]} />
+  </div>
+  <div className="col-md-6">
+    <Card card={Images[3]} />
+  </div>
 </div>
