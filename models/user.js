@@ -39,28 +39,51 @@ const userSchema = new Schema({
         required: true,
     },
 
-    vacation: {
-        type: String,
-    },
+    surveyInfo: [{
 
-    animals: {
-        type: String,
-    },
+        vacation: {
+            type: String,
+        },
 
-    flavor: {
-        type: String,
-    },
+        animals: {
+            type: String,
+        },
 
-    activity: {
-        type: String,
-    },
+        flavor: {
+            type: String,
+        },
+
+        activity: {
+            type: String,
+        },
+
+        personality: {
+            type: String,
+        },
+
+        family: {
+            type: String,
+        },
+
+        priorities: {
+            type: String,
+        },
+
+        entertainment: {
+            type: String,
+        },
+
+        alcohol: {
+            type: String,
+        },
+
+        religion: {
+            type: String,
+        },
+    }]
 
 
-
-
-
-
-
+    // Check all that apply will go here, will look into how this needs to be setup with Eloy with the form tool.
 
 
 
