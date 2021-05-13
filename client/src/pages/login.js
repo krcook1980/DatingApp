@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Formik, Field, Form } from 'formik';
 
-const Basic = () => (
+const Login = () => (
     <div>
         <h1>Login Here</h1>
         <Formik
@@ -26,9 +26,14 @@ const Basic = () => (
                 <label htmlFor="password"></label>
                 <Field id="password" name="password" placeholder="password" />
                 <button type="submit">Submit</button>
+                <Link to="/SignupForm">
+                    <button type="button">
+                        Click Me!
+     </button>
+                </Link>
             </Form>
         </Formik>
     </div>
 );
 
-ReactDOM.render(<Basic />, document.getElementById('root'));
+module.exports = Login;
