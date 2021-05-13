@@ -25,7 +25,6 @@ const Basic = () => (
                 />
                 <label htmlFor="password"></label>
                 <Field id="password" name="password" placeholder="password" />
-
                 <button type="submit">Submit</button>
             </Form>
         </Formik>
