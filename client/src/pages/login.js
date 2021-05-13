@@ -28,12 +28,12 @@ const Login = () => (
                 <button type="submit">Submit</button>
                 <Link to="/SignupForm">
                     <button type="button">
-                        Click Me!
-     </button>
+                        Create Account
+                </button>
                 </Link>
             </Form>
         </Formik>
     </div>
 );
 
-module.exports = Login;
+export default Login;
