@@ -8,23 +8,23 @@ module.exports = {
                 {
                     surveyInfo: {
                         $elemMatch: {
-                            vacation: User1.vacation,
-                            animals: User1.animals,
-                            flavor: User1.flavor,
-                            activity: User1.activity,
-                            personality: User1.personality,
-                            family: User1.family,
-                            priorities: User1.priorities,
-                            entertainment: User1.entertainment,
-                            alcohol: User1.alcohol,
-                            religion: User1.religion
+                            vacation: User.vacation,
+                            animals: User.animals,
+                            flavor: User.flavor,
+                            activity: User.activity,
+                            personality: User.personality,
+                            family: User.family,
+                            priorities: User.priorities,
+                            entertainment: User.entertainment,
+                            alcohol: User.alcohol,
+                            religion: User.religion
                         }
                     }
                 }
             )
             .sort({ date: -1 })
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err)); git
+            .catch(err => res.status(422).json(err));
     },
 
     createUser: function (req, res) {

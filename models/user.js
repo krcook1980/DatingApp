@@ -10,6 +10,11 @@ const userSchema = new Schema({
         required: true
     },
 
+    password: {
+        type: String,
+        required: true
+    },
+
     email: {
         type: mongoose.SchemaTypes.Email,
         required: true,
@@ -80,10 +85,12 @@ const userSchema = new Schema({
         religion: {
             type: String,
         },
+        // Check all that apply will go here, will look into how this needs to be setup with Eloy with the form tool.
+
     }]
 
 
-    // Check all that apply will go here, will look into how this needs to be setup with Eloy with the form tool.
+
 
 
 
