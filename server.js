@@ -1,6 +1,22 @@
 const express = require("express");
 const path = require("path");
 const mongoose = require("mongoose");
+const io = require('socket.io')(5000)
+
+io.on('connection', socket => {
+  const id = socket.handshake.query.id
+  socket.join(id)
+
+  socket.on('send-message', ({recipients, text}) => {
+    recipients.forEach(recipient => {
+      const newRecipients = recipient.filter(r !== recipient)
+      newRecipients.push(id)
+      socket.broadcast.to(recipient).emit('receive-message', {
+        recipients: newRecipients, sender: id, text
+      })
+    })
+  }
+})
 
 const PORT = process.env.PORT || 3001;
 const app = express();
