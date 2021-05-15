@@ -1,31 +1,47 @@
-// Defining methods for the userController
 const db = require("../models");
+const User = require("../models/user");
 
 module.exports = {
 
     findMatch: function (req, res) {
+
         db.User
+
             .find(
                 {
                     surveyInfo: {
+
                         $elemMatch: {
-                            vacation: User1.vacation,
-                            animals: User1.animals,
-                            flavor: User1.flavor,
-                            activity: User1.activity,
-                            personality: User1.personality,
-                            family: User1.family,
-                            priorities: User1.priorities,
-                            entertainment: User1.entertainment,
-                            alcohol: User1.alcohol,
-                            religion: User1.religion
+
+                            vacation: User.vacation,
+                            animals: User.animals,
+                            flavor: User.flavor,
+                            activity: User.activity,
+                            personality: User.personality,
+                            family: User.family,
+                            priorities: User.priorities,
+                            entertainment: User.entertainment,
+                            alcohol: User.alcohol,
+                            religion: User.religion,
+                            cooking: User.cooking,
+                            fishing: User.fishing,
+                            camping: User.camping,
+                            reading: User.reading,
+                            exercise: User.exercise,
+                            gaming: User.gaming,
+                            computer: User.computers,
+                            techDrones: User.techDrones,
+                            hiking: User.hiking,
+                            biking: User.biking,
+                            dadJokes: User.dadJokes
+
                         }
                     }
                 }
             )
-            .sort({ date: -1 })
+            .sort({ username: -1 })
             .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err)); git
+            .catch(err => res.status(422).json(err));
     },
 
     createUser: function (req, res) {
