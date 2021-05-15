@@ -1,4 +1,5 @@
-// Defining methods for the booksController
+// Defining methods for the userController
+const db = require("../models");
 
 module.exports = {
 
@@ -34,10 +35,27 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
-        db.User
-            .findOneAndUpdate({ _id: req.params.id }, req.body)
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err));
+        console.log(req.body, " in controller")
+        db.User.find(
+            
+            {
+                username: (req.body.name)
+            }
+         
+    )
+    .then(res => { db.User
+        .findOneAndUpdate(
+            { 
+                _id: req.body.userId 
+            }, 
+            {
+                $push: {myConnections: req.body.name}
+            }
+        )
+        .then(dbModel => res.json(dbModel))
+        .catch(err => res.status(422).json(err))
+    })
+       
     },
 
     remove: function (req, res) {
