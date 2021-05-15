@@ -131,6 +131,11 @@ const userSchema = new Schema({
         },
     }],
 
+    myConnections: [{}],
+    blockedUsers: [{}],
+
+
+
 });
 
 const User = mongoose.model("User", userSchema);
