@@ -85,14 +85,51 @@ const userSchema = new Schema({
         religion: {
             type: String,
         },
-        // Check all that apply will go here, will look into how this needs to be setup with Eloy with the form tool.
 
-    }]
+        biking: {
+            type: Boolean,
+        },
 
+        camping: {
+            type: Boolean,
+        },
 
+        computers: {
+            type: Boolean,
+        },
 
+        cooking: {
+            type: Boolean,
+        },
 
+        dadJokes: {
+            type: Boolean,
+        },
 
+        exercise: {
+            type: Boolean,
+        },
+
+        fishing: {
+            type: Boolean,
+        },
+
+        gaming: {
+            type: Boolean,
+        },
+
+        hiking: {
+            type: Boolean,
+        },
+
+        reading: {
+            type: Boolean,
+        },
+
+        techDrones: {
+            type: Boolean,
+        },
+    }],
 
 });
 

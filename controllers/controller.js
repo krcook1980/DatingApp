@@ -1,13 +1,18 @@
-// Defining methods for the booksController
+const db = require("../models");
+const User = require("../models/user");
 
 module.exports = {
 
     findMatch: function (req, res) {
+
         db.User
+
             .find(
                 {
                     surveyInfo: {
+
                         $elemMatch: {
+
                             vacation: User.vacation,
                             animals: User.animals,
                             flavor: User.flavor,
@@ -17,7 +22,19 @@ module.exports = {
                             priorities: User.priorities,
                             entertainment: User.entertainment,
                             alcohol: User.alcohol,
-                            religion: User.religion
+                            religion: User.religion,
+                            cooking: User.cooking,
+                            fishing: User.fishing,
+                            camping: User.camping,
+                            reading: User.reading,
+                            exercise: User.exercise,
+                            gaming: User.gaming,
+                            computer: User.computers,
+                            techDrones: User.techDrones,
+                            hiking: User.hiking,
+                            biking: User.biking,
+                            dadJokes: User.dadJokes
+
                         }
                     }
                 }
