@@ -1,9 +1,11 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+// import ReactDOM from 'react-dom';
 import { Formik, Field, Form } from 'formik';
+import { Link } from 'react-router-dom';
+
 
 const Login = () => (
-    <div>
+    <>
         <h1>Login Here</h1>
         <Formik
             initialValues={{
@@ -28,12 +30,12 @@ const Login = () => (
                 <button type="submit">Submit</button>
                 <Link to="/SignupForm">
                     <button type="button">
-                        Click Me!
+                        Create Account
      </button>
                 </Link>
             </Form>
         </Formik>
-    </div>
+    </>
 );
 
-module.exports = Login;
+export default Login;
