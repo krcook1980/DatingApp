@@ -79,6 +79,24 @@ module.exports = {
         db.User.findById({_id: req.params.id})
         .then(user => res.json(user.myConnections))
         .catch(err => res.status(422).json(err))
-    }
+    },
+
+        getContact: function( req, res) {
+            console.log("id ", req.body.userId)
+                 db.User.findById(
+                
+                    {
+                        _id: req.body.userId
+                    },
+                   
+            ).then(user => {
+                console.log("returned from haveContact", user.data.myConnections)
+                res.json(dbModel)
+            })
+            .catch(err => res.status(422).json(err));
+    
+        },
+    
+     
 };
 
