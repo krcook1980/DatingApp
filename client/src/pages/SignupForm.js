@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import API from "../utils/API";
+import { useHistory } from "react-router-dom";
 
 const initialFormData = {
   username: "",
@@ -39,6 +40,8 @@ const hobbies = {
 Object.freeze(initialFormData);
 
 export default function SignupForm() {
+  let history = useHistory();
+
   const [formData, updateFormData] = useState({
     ...initialFormData,
   });
@@ -68,14 +71,17 @@ export default function SignupForm() {
     setProfile({
       ...formData,
       ...checkData,
-    }, createUser);
+    });
   }
     console.log(JSON.stringify(profile), "I am profile");
     // API Call
     const createUser = () => {
       console.log(profile, " in form side")
       API.createUser(profile)
-      .then(result => console.log(result))
+      .then(result => {
+        console.log(result)
+        history.push('/Home', result)
+      })
       .catch(err => console.log(err))
   };
 
