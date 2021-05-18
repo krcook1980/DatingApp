@@ -7,7 +7,8 @@ const userSchema = new Schema({
 
     username: {
         type: String,
-        required: true
+        required: true,
+        tags: { type: [String], index: true }
     },
 
     password: {
@@ -18,125 +19,150 @@ const userSchema = new Schema({
     email: {
         type: mongoose.SchemaTypes.Email,
         required: true,
-        default: "email@gmail.com"
+        default: "email@gmail.com",
+        tags: { type: [String], index: true }
     },
 
     age: {
         type: Number,
         default: 69,
-        unique: true
+        tags: { type: [String], index: true }
     },
 
     firstName: {
         type: String,
         required: true,
-        default: "John"
+        default: "John",
+        tags: { type: [String], index: true }
     },
 
     lastName: {
         type: String,
         required: true,
-        default: "Smith"
+        default: "Smith",
+        tags: { type: [String], index: true }
     },
 
     gender: {
         type: String,
         required: true,
+        tags: { type: [String], index: true }
     },
 
-    surveyInfo: [{
+    vacation: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        vacation: {
-            type: String,
-        },
+    animals: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        animals: {
-            type: String,
-        },
+    flavor: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        flavor: {
-            type: String,
-        },
+    activity: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        activity: {
-            type: String,
-        },
+    personality: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        personality: {
-            type: String,
-        },
+    family: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        family: {
-            type: String,
-        },
+    priorities: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        priorities: {
-            type: String,
-        },
+    entertainment: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        entertainment: {
-            type: String,
-        },
+    alcohol: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        alcohol: {
-            type: String,
-        },
+    religion: {
+        type: String,
+        tags: { type: [String], index: true }
+    },
 
-        religion: {
-            type: String,
-        },
+    biking: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        biking: {
-            type: Boolean,
-        },
+    camping: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        camping: {
-            type: Boolean,
-        },
+    computers: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        computers: {
-            type: Boolean,
-        },
+    cooking: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        cooking: {
-            type: Boolean,
-        },
+    dadJokes: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        dadJokes: {
-            type: Boolean,
-        },
+    exercise: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        exercise: {
-            type: Boolean,
-        },
+    fishing: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        fishing: {
-            type: Boolean,
-        },
+    gaming: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        gaming: {
-            type: Boolean,
-        },
+    hiking: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        hiking: {
-            type: Boolean,
-        },
+    reading: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        reading: {
-            type: Boolean,
-        },
+    techDrones: {
+        type: Boolean,
+        tags: { type: [Boolean], index: true }
+    },
 
-        techDrones: {
-            type: Boolean,
-        },
-    }],
-
-    myConnections: [{}],
-    blockedUsers: [{}],
-
+    myConnections: Array,
+    blockedUsers: Array,
 
 
 });
+
+userSchema.index({
+
+})
 
 const User = mongoose.model("User", userSchema);
 
