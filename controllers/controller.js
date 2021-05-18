@@ -53,25 +53,26 @@ module.exports = {
     update: function (req, res) {
         console.log(req.body, " in controller")
         db.User.find(
-            
+
             {
                 username: (req.body.name)
             }
-         
-    )
-    .then(res => { db.User
-        .findOneAndUpdate(
-            { 
-                _id: req.body.userId 
-            }, 
-            {
-                $push: {myConnections: req.body.name}
-            }
+
         )
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
-    })
-       
+            .then(res => {
+                db.User
+                    .findOneAndUpdate(
+                        {
+                            _id: req.body.userId
+                        },
+                        {
+                            $push: { myConnections: req.body.name }
+                        }
+                    )
+                    .then(dbModel => res.json(dbModel))
+                    .catch(err => res.status(422).json(err))
+            })
+
     },
 
     remove: function (req, res) {
@@ -80,6 +81,10 @@ module.exports = {
             .then(dbModel => dbModel.remove())
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+    },
+    blockUser: function (req, res) {
+        db.User.find({ user: { $nin: [user.blockUsers] } })
+
     }
 };
 
