@@ -3,16 +3,20 @@ const app = express();
 
 const apiRoutes = require("./routes");
 
-const mongoose = require("mongoose");
+const http = require('http').Server(app);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: '*'
+  }
+});
 
-const io = require('socket.io')(5000);
+const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3001;
 
-// Define middleware here
+// Define express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
@@ -29,22 +33,16 @@ mongoose.connect(
 );
 
 
-app.listen(PORT, function() {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+//Whenever someone connects this gets executed
+io.on('connection', function(socket) {
+  console.log('A user connected');
+
+  //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function () {
+     console.log('A user disconnected');
+  });
 });
 
-
-io.on('connection', socket => {
-  const id = socket.handshake.query.id
-  socket.join(id)
-
-  socket.on('send-message', ({recipients, text}) => {
-    recipients.forEach(recipient => {
-      const newRecipients = recipient.filter(r !== recipient)
-      newRecipients.push(id)
-      socket.broadcast.to(recipient).emit('receive-message', {
-        recipients: newRecipients, sender: id, text
-      })
-    })
-  })
-})
+http.listen(5000, function() {
+  console.log('listening on *:5000');
+});
