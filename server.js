@@ -1,50 +1,48 @@
 const express = require("express");
-const path = require("path");
-const mongoose = require("mongoose");
-const io = require('socket.io')(5000)
+const app = express();
 
-io.on('connection', socket => {
-  const id = socket.handshake.query.id
-  socket.join(id)
+const apiRoutes = require("./routes");
 
-  socket.on('send-message', ({recipients, text}) => {
-    recipients.forEach(recipient => {
-      const newRecipients = recipient.filter(r !== recipient)
-      newRecipients.push(id)
-      socket.broadcast.to(recipient).emit('receive-message', {
-        recipients: newRecipients, sender: id, text
-      })
-    })
+const http = require('http').Server(app);
+const io = require('socket.io')(http, {
+  cors: {
+    origin: '*'
   }
-})
+});
+
+const mongoose = require("mongoose");
 
 const PORT = process.env.PORT || 3001;
-const app = express();
-const apiRoutes = require("./routes/apiRoutes");
 
-// Define middleware here
+// Define express middleware
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 
+// Use apiRoutes
+app.use(apiRoutes);
+
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactrecipes",
-  { useUnifiedTopology: true, useNewUrlParser: true, useCreateIndex: true }
+  process.env.MONGODB_URI || "mongodb://localhost/MyDatingApp",
+  { useNewUrlParser: true }
 );
 
-// Use apiRoutes
-app.use("/api", apiRoutes);
 
-// Send every request to the React app
-// Define any API routes before this runs
-app.get("*", function(req, res) {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
+//Whenever someone connects this gets executed
+io.on('connection', function(socket) {
+  console.log('A user connected');
+
+  //Whenever someone disconnects this piece of code executed
+  socket.on('disconnect', function () {
+     console.log('A user disconnected');
+  });
 });
 
-app.listen(PORT, function() {
-  console.log(`🌎 ==> API server now on port ${PORT}!`);
+http.listen(5000, function() {
+  console.log('listening on *:5000');
 });

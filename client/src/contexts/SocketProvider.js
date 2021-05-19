@@ -7,14 +7,16 @@ export function useSocket(){
     return useContext(SocketContext)
 }
 
-export function SocketProvider({ id, children }) {
+export function SocketProvider({ Id, children }) {
     const [socket, setSocket] = useState();
-
+    
     useEffect(() => {
-        const newSocket= io('https://localhost:5000', {query: {id}})
+        console.log("i am in socket ", Id)
+        const newSocket= io('http://localhost:5000', {query: {Id}})
+        console.log("new socket here ", newSocket)
         setSocket(newSocket)
         return () => newSocket.close()
-    }, [id])
+    }, [Id])
 
     return (
         <SocketContext.Provider value={socket}>
