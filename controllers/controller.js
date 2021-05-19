@@ -52,6 +52,29 @@ module.exports = {
     },
     update: function (req, res) {
         console.log(req.body, " in controller")
+
+        db.User.find(
+
+            {
+                username: (req.body.name)
+            }
+
+        )
+            .then(res => {
+                db.User
+                    .findOneAndUpdate(
+                        {
+                            _id: req.body.userId
+                        },
+                        {
+                            $push: { myConnections: req.body.name }
+                        }
+                    )
+                    .then(dbModel => res.json(dbModel))
+                    .catch(err => res.status(422).json(err))
+            })
+
+
         db.User.findOneAndUpdate(
             { 
                 _id: req.body.userId 
@@ -72,6 +95,9 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
+    blockUser: function (req, res) {
+        db.User.find({ user: { $nin: [user.blockUsers] } }
 
     getUser: function (req, res){
         console.log("I'm in controller get ", req.params.id)
@@ -98,5 +124,6 @@ module.exports = {
         },
     
      
+
 };
 
