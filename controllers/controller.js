@@ -74,9 +74,13 @@ module.exports = {
     },
 
     blockUser: function (req, res) {
-        db.User.find({ user: { $nin: [user.blockUsers] } })
-            .then(dbModel => res.json(dbModel))
-            .catch(err => res.status(422).json(err))
+        db.User.find()
+            .then(users => {
+                const filteredUsers = users.filter(user => !user.blockedUser.includes(req.user._id))
+                res.json(filteredUsers)
+            }
+            )
+
     },
 
 
