@@ -6,7 +6,8 @@ import { ContactsProvider } from "./contexts/contactsProvider";
 import { ConversationProvider } from './contexts/conversationProvider';
 import { SocketProvider } from './contexts/SocketProvider';
 import Home from './pages/Home';
-import SignupForm from './pages/SignupForm'
+import SignupForm from './pages/SignupForm';
+import Settings from './components/Settings.js'
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
                 <Route exact path='/Home' component={Home}/>
                 <Route exact path='/Dashboard'>{dashboard}</Route>
                 <Route exact path='/SignupForm' component={SignupForm} />
+                <Route exact path='/Settings' component={Settings} />
               </Switch>
        </div>
     </Router>

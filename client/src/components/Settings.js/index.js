@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
-import { Container, Col, Row } from react-bootstrap
+
+import { Form, Container, Col, Row, Button } from 'react-bootstrap';
 
 function SettingsForm() {
-//   const inputRef = useRef();
+//   const Form.ControlRef = useRef();
+
 //   // replace dispatch with API call.
 //   const [_, dispatch] = useTodoContext(); 
 
@@ -12,9 +14,11 @@ function SettingsForm() {
 // // set up call to API to populate information
 //     dispatch({
 //       type: "add",
-//       name: inputRef.current.value
+
+//       name: Form.ControlRef.current.value
 //     });
-//     inputRef.current.value = "";
+//     Form.ControlRef.current.value = "";
+
 //   }
 
   return (
@@ -32,40 +36,42 @@ function SettingsForm() {
           </Col>
           </Form.Row>
 
-          <FormGroup>
+
+          <Form.Group>
           <Form.Control className="container border mt-4" plaintext readOnly defaultValue="..username" />
-            <Input />
-          </FormGroup>
+            <Form.Control />
+          </Form.Group>
 
-          <FormGroup controlId ="formEmail" className="container border mt-4">
-            <Label>Email</Label>
-            <Input />
-          </FormGroup>
+          <Form.Group controlId ="formEmail" className="container border mt-4">
+            <Form.Label>Email</Form.Label>
+            <Form.Control />
+          </Form.Group>
 
-          <FormGroup controlId ="formPassword" className="container border mt-4">
-            <Label>Password</Label>
-            <Input />
-          </FormGroup>
+          <Form.Group controlId ="formPassword" className="container border mt-4">
+            <Form.Label>Password</Form.Label>
+            <Form.Control />
+          </Form.Group>
           
-          <FormGroup className="container border mt-4">
-            <Label>Age</Label>
-            <Input />
-          </FormGroup>
+          <Form.Group className="container border mt-4">
+            <Form.Label>Age</Form.Label>
+            <Form.Control />
+          </Form.Group>
 
-          <FormGroup className="container border mt-4">
-            <Label>Gender</Label>
-            <Input />
-          </FormGroup>
+          <Form.Group className="container border mt-4">
+            <Form.Label>Gender</Form.Label>
+            <Form.Control />
+          </Form.Group>
 
-          <FormGroup className="container border mt-4">
-            <Label>Looking For</Label>
-            <Input />
-          </FormGroup>
+          <Form.Group className="container border mt-4">
+            <Form.Label>Looking For</Form.Label>
+            <Form.Control />
+          </Form.Group>
 
-          <FormGroup className="container border mt-4">
-            <Label>Pet</Label>
-            <Input />
-          </FormGroup>
+          <Form.Group className="container border mt-4">
+            <Form.Label>Pet</Form.Label>
+            <Form.Control />
+          </Form.Group>
+
 
         </Col>
       
@@ -75,10 +81,12 @@ function SettingsForm() {
           <Button className="settingsBotton">Export</Button>
         </Col>
         <Col>
-          <FormGroup className="ToggleButton">
-            <Label>Allow Registration</Label>
+
+          <Form.Group className="ToggleButton">
+            <Form.Label>Allow Registration</Form.Label>
             <ToggleButton />
-          </FormGroup>
+          </Form.Group>
+
         </Col>
       </Row> */}
 
@@ -93,4 +101,6 @@ function SettingsForm() {
   );
 }
 
+
 export default SettingsForm;
+
