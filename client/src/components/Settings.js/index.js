@@ -1,9 +1,11 @@
 import React, { useRef } from "react";
 import "bootstrap/dist/css/bootstrap.min.css"
+
 import { Form, Container, Col, Row, Button } from 'react-bootstrap';
 
 function SettingsForm() {
 //   const Form.ControlRef = useRef();
+
 //   // replace dispatch with API call.
 //   const [_, dispatch] = useTodoContext(); 
 
@@ -12,9 +14,11 @@ function SettingsForm() {
 // // set up call to API to populate information
 //     dispatch({
 //       type: "add",
+
 //       name: Form.ControlRef.current.value
 //     });
 //     Form.ControlRef.current.value = "";
+
 //   }
 
   return (
@@ -31,6 +35,7 @@ function SettingsForm() {
         <Form.Control className="container border mt-4" placeholder="Last name" />
           </Col>
           </Form.Row>
+
 
           <Form.Group>
           <Form.Control className="container border mt-4" plaintext readOnly defaultValue="..username" />
@@ -67,6 +72,7 @@ function SettingsForm() {
             <Form.Control />
           </Form.Group>
 
+
         </Col>
       
       {/* <Row>
@@ -75,10 +81,12 @@ function SettingsForm() {
           <Button className="settingsBotton">Export</Button>
         </Col>
         <Col>
+
           <Form.Group className="ToggleButton">
             <Form.Label>Allow Registration</Form.Label>
             <ToggleButton />
           </Form.Group>
+
         </Col>
       </Row> */}
 
@@ -93,4 +101,6 @@ function SettingsForm() {
   );
 }
 
+
 export default SettingsForm;
+
