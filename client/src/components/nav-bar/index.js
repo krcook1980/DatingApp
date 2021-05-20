@@ -1,20 +1,21 @@
-import React from "react";
+import React from 'react'
+import { Link } from 'react-router-dom'
+import { Navbar, Nav } from 'react-bootstrap'
+// import isAuthenticated from '../lib/isAuthenticated'
 
-import MainNav from "./main-nav";
-import AuthNav from "./auth-nav";
-
-const NavBar = () => {
-  return (
-    <div className="nav-container mb-3">
-      <nav className="navbar navbar-expand-md navbar-light bg-light">
-        <div className="container">
-          <div className="navbar-brand logo" />
-          <MainNav />
-          <AuthNav />
-        </div>
-      </nav>
-    </div>
-  );
-};
+const NavBar = () => (
+  <Navbar expand="lg">
+    <Navbar.Toggle aria-controls="basic-navbar-nav" />
+    <Navbar.Collapse id="basic-navbar-nav">
+      <Nav className="mr-auto">
+        
+          {/* <Nav.Link><Link to="/">Home</Link></Nav.Link>
+          <Nav.Link><Link to="/Dashboard">Chat</Link></Nav.Link>
+          <Nav.Link> <Link to="/logout">Logout</Link></Nav.Link> */}
+    
+      </Nav>
+    </Navbar.Collapse>
+  </Navbar >
+)
 
 export default NavBar;
