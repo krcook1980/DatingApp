@@ -7,7 +7,7 @@ import { ConversationProvider } from './contexts/conversationProvider';
 import { SocketProvider } from './contexts/SocketProvider';
 import Home from './pages/Home';
 import SignupForm from './pages/SignupForm';
-import Settings from './components/Settings.js'
+import Settings from './components/SettingsPage'
 
 
 function App() {
