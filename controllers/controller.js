@@ -50,42 +50,19 @@ module.exports = {
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
+
     update: function (req, res) {
         console.log(req.body, " in controller")
-
-        db.User.find(
-
-            {
-                username: (req.body.name)
-            }
-
-        )
-            .then(res => {
-                db.User
-                    .findOneAndUpdate(
-                        {
-                            _id: req.body.userId
-                        },
-                        {
-                            $push: { myConnections: req.body.name }
-                        }
-                    )
-                    .then(dbModel => res.json(dbModel))
-                    .catch(err => res.status(422).json(err))
-            })
-
-
         db.User.findOneAndUpdate(
-            { 
-                _id: req.body.userId 
-            }, 
             {
-                $push: {myConnections: req.body.name}
+                _id: req.body.userId
+            },
+            {
+                $push: { myConnections: req.body.name }
             }
         )
-        .then(dbModel => res.json(dbModel))
-        .catch(err => res.status(422).json(err))
-        
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     },
 
     remove: function (req, res) {
@@ -97,33 +74,39 @@ module.exports = {
     },
 
     blockUser: function (req, res) {
-        db.User.find({ user: { $nin: [user.blockUsers] } }
-
-    getUser: function (req, res){
-        console.log("I'm in controller get ", req.params.id)
-        // const userId = "60a2cdb0745bca35843bedb2"
-        db.User.findById({_id: req.params.id})
-        .then(user => res.json(user.myConnections))
-        .catch(err => res.status(422).json(err))
+        db.User.find({ user: { $nin: [user.blockUsers] } })
+            .then(dbModel => res.json(dbModel))
+            .catch(err => res.status(422).json(err))
     },
 
-        getContact: function( req, res) {
-            console.log("id ", req.body.userId)
-                 db.User.findById(
-                
-                    {
-                        _id: req.body.userId
-                    },
-                   
-            ).then(user => {
-                console.log("returned from haveContact", user.data.myConnections)
-                res.json(dbModel)
-            })
+
+
+
+    getUser: function (req, res) {
+        console.log("I'm in controller get ", req.params.id)
+        // const userId = "60a2cdb0745bca35843bedb2"
+        db.User.findById({ _id: req.params.id })
+            .then(user => res.json(user.myConnections))
+            .catch(err => res.status(422).json(err))
+    },
+
+    getContact: function (req, res) {
+        console.log("id ", req.body.userId)
+        db.User.findById(
+
+            {
+                _id: req.body.userId
+            },
+
+        ).then(user => {
+            console.log("returned from haveContact", user.data.myConnections)
+            res.json(dbModel)
+        })
             .catch(err => res.status(422).json(err));
-    
-        },
-    
-     
+
+    },
+
+
 
 };
 
