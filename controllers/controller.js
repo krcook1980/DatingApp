@@ -3,66 +3,53 @@ const User = require("../models/user");
 
 module.exports = {
 
+
+
     findMatch: function (req, res) {
 
+
+        // write code to get current USERS information, so we can then set that to the search value in the query. .then and nested in ANOTHER .then second database call        
         db.User
+            .findById({ _id: req.body.id })
+            .then(user => {
+                console.log("preferences: ", user.data.looking, Object.values(user.data.surveyInfo));
+                const lookingFor = user.data.looking
+                const matchInfo = Object.values(user.data.surveyInfo)
 
-            .find(
-                {
-                    surveyInfo: {
+            })
+            .then(dbUser)
+            .aggregate([
+                { $match: { $text: { $search: matchInfo } } },
+                { $match: { looking: lookingFor } },
+                { $project: { score: { $meta: 'textScore' }, username: 1 } },
+                { $sort: { score: -1 } }, { $limit: 5 }
+            ])
+            .then(dbUser => res.json(dbUser))
 
-                        $elemMatch: {
-
-                            vacation: User.vacation,
-                            animals: User.animals,
-                            flavor: User.flavor,
-                            activity: User.activity,
-                            personality: User.personality,
-                            family: User.family,
-                            priorities: User.priorities,
-                            entertainment: User.entertainment,
-                            alcohol: User.alcohol,
-                            religion: User.religion,
-                            cooking: User.cooking,
-                            fishing: User.fishing,
-                            camping: User.camping,
-                            reading: User.reading,
-                            exercise: User.exercise,
-                            gaming: User.gaming,
-                            computer: User.computers,
-                            techDrones: User.techDrones,
-                            hiking: User.hiking,
-                            biking: User.biking,
-                            dadJokes: User.dadJokes
-
-                        }
-                    }
-                }
-            )
-            .sort({ username: -1 })
-            .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
     },
 
     createUser: function (req, res) {
         db.User
             .create(req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
     },
     update: function (req, res) {
         db.User
             .findOneAndUpdate({ _id: req.params.id }, req.body)
-            .then(dbModel => res.json(dbModel))
+            .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
     },
 
     remove: function (req, res) {
         db.User
             .findById({ _id: req.params.id })
-            .then(dbModel => dbModel.remove())
-            .then(dbModel => res.json(dbModel))
+            .then(dbUser => dbUser.remove())
+            .then(dbUser => res.json(dbUser))
             .catch(err => res.status(422).json(err));
-    }
+    },
+
+
 };
 
