@@ -1,82 +1,94 @@
-import React from 'react';
-// import ReactDOM from 'react-dom';
-import { Formik, Field, Form } from 'formik';
-import { Link } from 'react-router-dom';
-import Header from '../components/header';
-import { Row, Col, Container } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Form, Button } from 'react-bootstrap';
+import API from '../utils/API';
+import Axios from 'axios';
 
+export default function Login () {
+    
+    const [loginUsername, setLoginUsername] = useState("");
+    const [loginPassword, setLoginPassword] = useState("");
+    const [registerUser, setRegisterUser] = useState("");
+    const [registerPassword, setRegisterPassword] = useState("");
+    const [data, setData] = useState("")
+    const regUser = {
+        username: "CryptAgain",
+        password: "passw0rd",
+        email: "cryptt@aol.com",
+        age: 75,
+        firstName: "Crypt",
+        lastName: "Test",
+        gender: "Female",
+        vacation: "Beach",
+        animals: "petLover",
+        flavor: "Salty",
+        activity: "Outdoors",
+        personality: "Boring",
+        family: "Yes",
+        priorities: "Marriage",
+        entertainment: "movies",
+        alcohol: "Yes",
+        religion: "LDS",
+        biking: true,
+        camping: true,
+        computers: false,
+        cooking: true,
+        dadJokes: false,
+        exercise: true,
+        fishing: true,
+        gaming: false,
+        hiking: true,
+        reading: false,
+        techDrones: false,
+        myConnections: [],
+        blockedUsers: []
+    }
+    const [user, setUser] = useState("")
+    // 15:00 for functions
+    const login = () => {
+        Axios({
+            method: "POST",
+            data: regUser,
+            withCredentials: true,
+            url: "http://localhost:3000/login"
+        }).then(res => console.log(res))
+    }
+    const register = () => {
+         Axios({
+            method: "POST",
+            data: regUser,
+            withCredentials: true,
+            url: "http://localhost:3000/api/register"
+        }).then(res => console.log(res))
+    }
 
-const Login = () => (
-    <>
-        <Header />
-        <Container>
+    const getUser = () => {
+        Axios({
+            method: "GET",
+            withCredentials: true,
+            url: "http://localhost:3000/getUser"
+        }).then(res => setData(res.data))
+    }
 
-        <h1>Login Here</h1>
-        <Formik
-            initialValues={{
-                email: '',
-                password: '',
-            }}
-            validate={values => {
-                const errors = {};
-                if (!values.email) {
-                    errors.email = 'Required';
-                } else if (
-                    !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-                ) {
-                    errors.email = 'Invalid email address';
-                }
-                return errors;
-            }}
-            onSubmit={async (values) => {
-                await new Promise((r) => setTimeout(r, 500));
-                alert(JSON.stringify(values, null, 2));
-            }}
-        >
-            <Form>
-                <Row>
-                    <Col md="6">
-                        <label htmlFor="email">Email</label>
-                        <Field
-                            id="email"
-                            name="email"
-                            placeholder="jane@acme.com"
-                            type="email"
-                        />
-                    </Col>
-                </Row>
-                <Row>
-                    <Col md="6">
-                        <label htmlFor="password">Password</label>
-                        <Field id="password" name="password" placeholder="password" />
-                    </Col>
-                </Row>
+     return (
+        <div className="App">
+            <div>
+            <h1>Login Here:</h1>
+            <input placeholder="username" onChange={e => setLoginUsername(e.target.value)} />
+            <input placeholder="password" onChange={e => setLoginPassword(e.target.value)} />
+            <button onClick={login}>Submit</button>
+            </div>
+            <div>
+            <h1>Register Here:</h1>
+            <input placeholder="username" onChange={e => setRegisterUser(e.target.value)} />
+            <input placeholder="password" onChange={e => setRegisterPassword(e.target.value)} />
+            <button onClick={register}>Submit</button>
+            </div>
+            <h1>Get User</h1>
+            <button onClick={getUser}>Submit</button>
+            {
+                data.username ? <h1>Welcome back: {data.username} </h1> : null
+            }
+        </div>
 
-                <Row>
-                    <Col>
-                        <Link to="/Home">
-                            <button type="submit">
-                                Submit
-                            </button>
-                        </Link>
-                    </Col>
-
-                </Row>
-                <Row>
-                    <Col>
-                        <Link to="/SignupForm">
-                            <h2>Not a member yet? Sign up here:</h2>
-                            <button type="button">
-                                Create Account
-                                </button>
-                        </Link>
-                    </Col>
-                </Row>
-
-            </Form>
-        </Formik>
-        </Container>
-    </>
-);
-
-export default Login;
+     )
+}
