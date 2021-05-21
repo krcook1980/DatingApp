@@ -1,8 +1,10 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import API from "../utils/API";
+import { useHistory } from "react-router-dom";
 
 const initialFormData = {
   username: "",
+  password: "",
   email: "",
   age: "",
   firstName: "",
@@ -38,11 +40,13 @@ const hobbies = {
 Object.freeze(initialFormData);
 
 export default function SignupForm() {
-  const [formData, updateFormData] = React.useState({
+  let history = useHistory();
+
+  const [formData, updateFormData] = useState({
     ...initialFormData,
   });
 
-  const [profile, setProfile] = React.useState();
+  const [profile, setProfile] = useState();
 
   const handleChange = (e) => {
     updateFormData({
@@ -51,7 +55,7 @@ export default function SignupForm() {
     });
   };
 
-  const [checkData, updateCheckData] = React.useState({
+  const [checkData, updateCheckData] = useState({
     ...hobbies,
   });
 
@@ -68,10 +72,23 @@ export default function SignupForm() {
       ...formData,
       ...checkData,
     });
-    console.log(JSON.stringify(profile));
+  }
+    console.log(JSON.stringify(profile), "I am profile");
     // API Call
-    // API.createUser(profile).then(res => setUser(res.data)).catch(err => console.log(err))
+    const createUser = () => {
+      console.log(profile, " in form side")
+      API.createUser(profile)
+      .then(result => {
+        console.log(result)
+        history.push('/Home', result)
+      })
+      .catch(err => console.log(err))
   };
+
+  useEffect(() => {
+    profile && createUser()
+  },[profile])
+
   return (
     <div className="container col-6 border mt-4 text-center rounded background-info">
       <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
@@ -89,6 +106,19 @@ export default function SignupForm() {
               placeholder="Username"
               required
               value={formData.username}
+              onChange={handleChange}
+            />
+          </div>
+          
+          <div className="mt-4">
+            <label htmlFor="username">Password</label>
+            <input
+              type="text"
+              name="password"
+              id="password"
+              placeholder="create a password"
+              required
+              value={formData.password}
               onChange={handleChange}
             />
           </div>

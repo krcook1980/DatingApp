@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 require('mongoose-type-email');
-const Schema = mongoose.Schema;
 
 
-
-const userSchema = new Schema({
-
+const user = new mongoose.Schema({
     username: {
         type: String,
         required: true,
@@ -146,12 +143,10 @@ const userSchema = new Schema({
     blockedUsers: Array,
 
 
-
-
 });
 
 userSchema.index({ vacation: 'text', animals: 'text', flavor: 'text', activity: 'text', personality: 'text', family: 'text', priorities: 'text', entertainment: 'text', alcohol: 'text', religion: 'text' })
 
-const User = mongoose.model("User", userSchema);
 
-module.exports = User;
+module.exports = mongoose.model("User", user)
+

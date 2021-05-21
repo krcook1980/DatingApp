@@ -1,9 +1,19 @@
 import axios from "axios";
 
-// The getRecipes method retrieves recipes from the server
-// It accepts a "query" or term to search the recipe api for
+
 export default {
-  getLoggedIn: function () {
-    return axios.get("/api/login");
+
+  createUser: function(profileData) {
+    console.log("create api", profileData)
+    return axios.post("/api/createUser", profileData)
+  },
+  getContactList: function(userIdData) {
+    console.log("get api utils", userIdData)
+    return axios.get("/api/getUser/" + userIdData)
+  },
+  saveContact: function (saveContactData) {
+    console.log("in api", saveContactData)
+    return axios.put("/api/saveContact", saveContactData)
   }
+
 };
