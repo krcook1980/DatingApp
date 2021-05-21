@@ -1,11 +1,12 @@
 const mongoose = require("mongoose");
 require('mongoose-type-email');
 
+
 const user = new mongoose.Schema({
     username: {
         type: String,
         required: true,
-        tags: { type: [String], index: true }
+
     },
 
     password: {
@@ -16,145 +17,136 @@ const user = new mongoose.Schema({
     email: {
         type: mongoose.SchemaTypes.Email,
         required: true,
+        unique: true,
         default: "email@gmail.com",
-        tags: { type: [String], index: true }
+
     },
 
     age: {
         type: Number,
         default: 69,
-        tags: { type: [String], index: true }
+
     },
 
     firstName: {
         type: String,
         required: true,
         default: "John",
-        tags: { type: [String], index: true }
+
     },
 
     lastName: {
         type: String,
         required: true,
-        default: "Smith",
-        tags: { type: [String], index: true }
+        default: "Smith"
     },
 
     gender: {
         type: String,
         required: true,
-        tags: { type: [String], index: true }
     },
 
-    vacation: {
+    looking: {
         type: String,
-        tags: { type: [String], index: true }
+        required: true,
     },
 
-    animals: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+    surveyInfo:
+        [{
+            vacation: {
+                type: String,
+            },
 
-    flavor: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            animals: {
+                type: String,
+            },
 
-    activity: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            flavor: {
+                type: String,
+            },
 
-    personality: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            activity: {
+                type: String,
+            },
 
-    family: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            personality: {
+                type: String,
+            },
 
-    priorities: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            family: {
+                type: String,
+            },
 
-    entertainment: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            priorities: {
+                type: String,
+            },
 
-    alcohol: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            entertainment: {
+                type: String,
+            },
 
-    religion: {
-        type: String,
-        tags: { type: [String], index: true }
-    },
+            alcohol: {
+                type: String,
+            },
+
+            religion: {
+                type: String,
+            }
+        }],
 
     biking: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     camping: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     computers: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     cooking: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     dadJokes: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     exercise: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     fishing: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     gaming: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     hiking: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     reading: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     techDrones: {
         type: Boolean,
-        tags: { type: [Boolean], index: true }
     },
 
     myConnections: Array,
+
     blockedUsers: Array,
 
-})
+
+});
+
+userSchema.index({ vacation: 'text', animals: 'text', flavor: 'text', activity: 'text', personality: 'text', family: 'text', priorities: 'text', entertainment: 'text', alcohol: 'text', religion: 'text' })
+
 
 module.exports = mongoose.model("User", user)
 
