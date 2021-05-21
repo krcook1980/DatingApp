@@ -1,4 +1,5 @@
 const db = require("../models");
+const bcrypt = require('bcryptjs')
 
 module.exports = {
 
@@ -44,18 +45,29 @@ module.exports = {
     },
 
     createUser: function (req, res) {
-        console.log
-        db.User
-            .create(req.body)
+        db.User.findOne({username: req.body.username}, async (err, doc) => {
+        if (err) throw err
+        if (doc) res.send("User already exists")
+        if (!doc){
+            const hashedPassword = await bcrypt.hash(req.body.password, 10);
+            const newUser = req.body
+            newUser.password = hashedPassword;
+            db.User.create(req.body)
             .then(dbModel => res.json(dbModel))
             .catch(err => res.status(422).json(err));
+        }
+    })
+    
+            
     },
 
     update: function (req, res) {
-        console.log(req.body, " in controller")
+        const data = req.body.type
+        console.log(data, " in controller")
+    
         db.User.findOneAndUpdate(
             {
-                _id: req.body.userId
+                _id: req.body.user
             },
             {
                 $push: { myConnections: req.body.name }
@@ -90,27 +102,8 @@ module.exports = {
         console.log("I'm in controller get ", req.params.id)
         // const userId = "60a2cdb0745bca35843bedb2"
         db.User.findById({ _id: req.params.id })
-            .then(user => res.json(user.myConnections))
+            .then(user => res.json(user))
             .catch(err => res.status(422).json(err))
-    },
-
-    getContact: function (req, res) {
-        console.log("id ", req.body.userId)
-        db.User.findById(
-
-            {
-                _id: req.body.userId
-            },
-
-        ).then(user => {
-            console.log("returned from haveContact", user.data.myConnections)
-            res.json(dbModel)
-        })
-            .catch(err => res.status(422).json(err));
-
-    },
-
-
-
+    }
 };
 
