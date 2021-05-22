@@ -58,7 +58,7 @@ module.exports = {
                 _id: req.body.userId
             },
             {
-                $push: { myConnections: req.body.name }
+                $push: { blockedUsers: req.body.name }
             }
         )
             .then(dbModel => res.json(dbModel))
@@ -73,8 +73,8 @@ module.exports = {
             .catch(err => res.status(422).json(err));
     },
 
-    blockUser: function (req, res) {
-        db.User.find()
+    getBlocked: function (req, res) {
+        db.User.find(req.params.id)
             .then(users => {
                 const filteredUsers = users.filter(user => !user.blockedUser.includes(req.user._id))
                 res.json(filteredUsers)
