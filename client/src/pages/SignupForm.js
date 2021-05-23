@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
 
@@ -73,11 +73,11 @@ export default function SignupForm() {
       ...checkData,
     });
   }
-    console.log(JSON.stringify(profile), "I am profile");
-    // API Call
-    const createUser = () => {
-      console.log(profile, " in form side")
-      API.createUser(profile)
+  console.log(JSON.stringify(profile), "I am profile");
+  // API Call
+  const createUser = () => {
+    console.log(profile, " in form side")
+    API.createUser(profile)
       .then(result => {
         console.log(result)
         history.push('/Home', result)
@@ -87,12 +87,12 @@ export default function SignupForm() {
 
   useEffect(() => {
     profile && createUser()
-  },[profile])
+  }, [profile])
 
   return (
-    <div className="container col-6 border mt-4 text-center rounded background-info">
+    <div style={{ background: "whitesmoke", border: "#4c004c" }} className="container col-6 border mt-4 text-center rounded background-info">
       <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
-        <label className="mt-4">
+        <label style={{ background: "whitesmoke" }} className="mt-4">
           Sign Up To Make A New Friend Or Maybe More!
         </label>
 
@@ -109,7 +109,7 @@ export default function SignupForm() {
               onChange={handleChange}
             />
           </div>
-          
+
           <div className="mt-4">
             <label htmlFor="username">Password</label>
             <input

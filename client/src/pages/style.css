@@ -1,0 +1,12 @@
+h3,
+#contactsContainer,
+#matchesContainer {
+  background: whitesmoke;
+}
+#contactBtn,
+#haveBtn,
+#chatBtn {
+  background: #800080;
+  border: #800080;
+  color: #d8b2d8;
+}
