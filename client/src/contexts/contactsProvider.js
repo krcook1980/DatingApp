@@ -1,5 +1,6 @@
-import React, {useContext} from 'react';
-import useLocalStorage from '../hooks/useLocalStorage'
+import React, {useContext, useEffect, useState} from 'react';
+import UserContext from "./userProvider"
+
 
 const ContactsContext = React.createContext()
 
@@ -8,16 +9,17 @@ export function useContacts() {
 }
 
 export function ContactsProvider ({ children}) {
-    const [contacts, setContacts] = useLocalStorage('contacts', [])
+    const {userData, setUserData} = useContext(UserContext)
+    const [contacts, setContacts] = useState([])
+    
+    useEffect(()=>{
+        setContacts(userData.myConnections)
+    },[userData])
 
-    function createContact (id, name) {
-        setContacts(prevContacts => {
-            return [...prevContacts, {id, name}]
-        })
-    }
+    console.log("contact contexts ", contacts)
 
     return (
-        <ContactsContext.Provider value= {{ contacts, createContact}}>
+        <ContactsContext.Provider value= {{ contacts }}>
             {children}
         </ContactsContext.Provider>
     )

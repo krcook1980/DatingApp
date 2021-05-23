@@ -64,14 +64,14 @@ export function ConversationProvider({ id, children }) {
     const formattedConversation = conversations.map((conversation, index) => {
         const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {
-                return contact.id === recipient
+                return contact._id === recipient
             })
             const name = (contact && contact.name) || recipient
             return { id: recipient, name }
         })
         const messages = conversation.messages.map(message => {
             const contact = contacts.find(contact => {
-                return contact.id === message.sender
+                return contact._id === message.sender
             })
             const name = (contact && contact.name || message.sender)
             const fromMe = id === message.sender

@@ -1,29 +1,19 @@
 import axios from "axios";
 
-
 export default {
 
-  createUser: function (profileData) {
-    console.log("create api", profileData)
+  createUser: function(profileData) {
+    console.log("createUser api", profileData)
     return axios.post("/api/createUser", profileData)
   },
-  getContactList: function (userIdData) {
-    console.log("get api utils", userIdData)
-    return axios.get("/api/getUser/" + userIdData)
-  },
   saveContact: function (saveContactData) {
-    console.log("in api", saveContactData)
+    console.log("in api saveContact", saveContactData)
     return axios.put("/api/saveContact", saveContactData)
   },
-  findMatches: function (userId, saveMatches) {
-    console.log("data ", saveMatches)
-    return axios.get("/api/findMatches/" + userId, saveMatches)
+
+  findMatches: function(userData){
+    console.log("in utils api findMatches ", userData)
+    return axios.post("/api/findMatches", userData)
   }
 
-
-
-
 };
-
-
-//req.body.________ (key)

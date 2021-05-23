@@ -60,14 +60,10 @@ app.post("/login", (req, res, next) => {
       else {
         req.logIn(user, err => {
           if (err) throw err
-          res.send("success! You logged in")
+          res.send(user)
         })
       }
     })(req, res, next)
-})
-
-app.get("/getUser", (req, res) => {
-  res.send(req.user) //this stores our logged in person
 })
 
 // Use apiRoutes
