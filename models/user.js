@@ -145,7 +145,7 @@ const user = new mongoose.Schema({
 
 });
 
-userSchema.index({ vacation: 'text', animals: 'text', flavor: 'text', activity: 'text', personality: 'text', family: 'text', priorities: 'text', entertainment: 'text', alcohol: 'text', religion: 'text' })
+user.index({ vacation: 'text', animals: 'text', flavor: 'text', activity: 'text', personality: 'text', family: 'text', priorities: 'text', entertainment: 'text', alcohol: 'text', religion: 'text' })
 
 
 module.exports = mongoose.model("User", user)

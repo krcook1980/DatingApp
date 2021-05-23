@@ -12,10 +12,8 @@ router.route('/block')
 router.route("/findMatches")
     .post(userController.findMatches)
 
-router
-
-    .route('/:id')
+router.route('/:id')
     // .get(userController.findMatches)
-    
+
 
 module.exports = router;
