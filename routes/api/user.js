@@ -8,7 +8,7 @@ router.route('/')
 
 router
     .route('/:id')
-    .get(userController.getUser)
-    
+    .get(userController.findMatches)
+
 
 module.exports = router;
