@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
 
@@ -11,16 +11,17 @@ const initialFormData = {
   lastName: "",
   gender: "",
   looking: "",
-  vacation: "",
-  animals: "",
-  flavor: "",
-  activity: "",
-  personality: "",
-  family: "",
-  priorities: "",
-  entertainment: "",
-  alcohol: "",
-  religion: "",
+  vacation: "Ocean",
+  animals: "petLover",
+  flavor: "salty",
+  activity: "leaveMeAlone",
+  personality: "loud",
+  family: "haveKids",
+  priorities: "time",
+  entertainment: "chill",
+  alcohol: "socialDrinker",
+  religion: "notAtAll"
+
 };
 
 const hobbies = {
@@ -40,7 +41,7 @@ const hobbies = {
 Object.freeze(initialFormData);
 
 export default function SignupForm() {
-  let history = useHistory();
+  const history = useHistory();
 
   const [formData, updateFormData] = useState({
     ...initialFormData,
@@ -73,21 +74,21 @@ export default function SignupForm() {
       ...checkData,
     });
   }
-    console.log(JSON.stringify(profile), "I am profile");
-    // API Call
-    const createUser = () => {
-      console.log(profile, " in form side")
-      API.createUser(profile)
+  console.log(profile, "I am profile");
+  // API Call
+  const createUser = async () => {
+    console.log(profile, " in form side")
+    API.createUser(profile)
       .then(result => {
         console.log(result)
-        history.push('/Home', result)
+        history.pushState("/home")
       })
       .catch(err => console.log(err))
   };
 
   useEffect(() => {
     profile && createUser()
-  },[profile])
+  }, [profile])
 
   return (
     <div className="container col-6 border mt-4 text-center rounded background-info">
@@ -109,7 +110,7 @@ export default function SignupForm() {
               onChange={handleChange}
             />
           </div>
-          
+
           <div className="mt-4">
             <label htmlFor="username">Password</label>
             <input

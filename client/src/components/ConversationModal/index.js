@@ -36,7 +36,7 @@ export default function ConversationModal({closeModal}) {
                             type="checkbox"
                             value={selectedContactIds.includes(contact.id)}
                             label={contact.name}
-                            onChange={() => handleCheckChng(contact.id)}
+                            onChange={() => handleCheckChng(contact.name)}
                             ></Form.Check>
                         </Form.Group>
                     ))}

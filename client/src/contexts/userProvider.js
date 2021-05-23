@@ -1,0 +1,36 @@
+import React from 'react';
+
+const UserContext = React.createContext({
+        id: "",
+        username: "",
+        password: "",
+        email: "",
+        age: "",
+        firstName: "",
+        lastName: "",
+        gender: "",
+        vacation: "",
+        animals: "",
+        flavor: "",
+        activity: "",
+        personality: "",
+        family: "",
+        priorities: "e",
+        entertainment: "",
+        alcohol: "",
+        religion: "",
+        biking: "",
+        camping: "",
+        computers: "",
+        cooking: "",
+        dadJokes: "",
+        exercise: "",
+        fishing: "",
+        gaming: "",
+        hiking: "",
+        reading: "",
+        techDrones: "",
+        myConnections: [],
+        blockedUsers: []
+})
+export default UserContext;

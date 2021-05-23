@@ -1,15 +1,13 @@
 import React, {useState} from 'react';
 import { Tab, Nav, Button, Modal } from 'react-bootstrap';
 import Conversations from '../Conversations';
-import Contacts from '../Contacts';
+import Contacts from '../DashboardContacts';
 import ConversationModal from '../ConversationModal';
-import ContactModal from '../ContactModal';
 
-export default function Sidebar({id}) {
+export default function Sidebar({Id, contacts}) {
     const Converstation_Key = 'conversations';
     const Contact_Key = 'contact'
     const [activeKey, setActiveKey] =useState(Converstation_Key);
-    const conversationsOpen = activeKey === Converstation_Key;
     const [modalOpen, setModalOpen] = useState(false);
     
     function closeModal () {
@@ -36,22 +34,18 @@ export default function Sidebar({id}) {
                     <Conversations />
                 </Tab.Pane>
                 <Tab.Pane eventKey={Contact_Key}>
-                    <Contacts />
+                    <Contacts contacts={contacts}/>
                 </Tab.Pane>
             </Tab.Content> 
-            <div className="p-2 border-top border-right small">
-                You are logged in as: <span className="text=muted">{id}</span>
-            </div>  
+            
             <Button className="rounded-0" onClick={() => setModalOpen(true)}>
-                New {conversationsOpen ? 'Conversation' : 'Contact'}
+                New { 'Conversation' }
             </Button> 
             </Tab.Container>
+
+            {/* opens to create new conversation with contacts */}
             <Modal show={modalOpen} onHide={closeModal}>
-                {conversationsOpen ?
-                    <ConversationModal closeModal={closeModal}/> :
-                    <ContactModal closeModal={closeModal}/>
-                }
-           
+               <ConversationModal closeModal={closeModal}/>
             </Modal>
         </div>
     )
