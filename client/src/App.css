@@ -1,0 +1,9 @@
+body {
+  background: hsl(300, 33%, 55%);
+  color: #4c004c;
+}
+.btn {
+  background: #800080;
+  border: #800080;
+  color: #d8b2d8;
+}

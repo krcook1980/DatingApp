@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
+import "./style.css";
 
 const initialFormData = {
   username: "",
@@ -91,7 +92,7 @@ export default function SignupForm() {
   }, [profile])
 
   return (
-    <div className="container col-6 border mt-4 text-center rounded background-info">
+    <div style={{ background: "whitesmoke" }} className="container col-6 border mt-4 text-center rounded background-info">
       <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
         <label className="mt-4">
           Sign Up To Make A New Friend Or Maybe More!
@@ -328,109 +329,129 @@ export default function SignupForm() {
             <p>Check All That Apply</p>
             <div className="container border">
               <div className="row">
-                <div>
-                  <label htmlFor="cooking">Cooking</label>
-                  <input
-                    type="checkbox"
-                    name="cooking"
-                    id="cooking"
-                    onChange={boxChange}
-                  />
+                <div className="col-md-4 p-4">
+
+                  <div>
+                    <label htmlFor="cooking">Cooking</label>
+                    <input
+                      type="checkbox"
+                      name="cooking"
+                      id="cooking"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="fishing">Fishing</label>
+                    <input
+                      type="checkbox"
+                      name="fishing"
+                      id="fishing"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="camping">Camping</label>
+                    <input
+                      type="checkbox"
+                      name="camping"
+                      id="camping"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="reading">Reading</label>
+                    <input
+                      type="checkbox"
+                      name="reading"
+                      id="reading"
+                      onChange={boxChange}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="fishing">Fishing</label>
-                  <input
-                    type="checkbox"
-                    name="fishing"
-                    id="fishing"
-                    onChange={boxChange}
-                  />
+                <div className="col-md-4 p-4">
+
+                  <div>
+                    <label htmlFor="exercise">Exercise</label>
+                    <input
+                      type="checkbox"
+                      name="exercise"
+                      id="exercise"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="gaming">Gaming</label>
+                    <input
+                      type="checkbox"
+                      name="gaming"
+                      id="gaming"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="computers">Computers</label>
+                    <input
+                      type="checkbox"
+                      name="computers"
+                      id="computers"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="tech-drones">Tech/Drones</label>
+                    <input
+                      type="checkbox"
+                      name="techDrones"
+                      id="tech-drones"
+                      onChange={boxChange}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="camping">Camping</label>
-                  <input
-                    type="checkbox"
-                    name="camping"
-                    id="camping"
-                    onChange={boxChange}
-                  />
+                <div className="col-md-4 p-4">
+
+                  <div>
+                    <label htmlFor="hiking">Hiking</label>
+                    <input
+
+                      type="checkbox"
+                      name="hiking"
+                      id="hiking"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="biking">Biking</label>
+                    <input
+                      type="checkbox"
+                      name="biking"
+                      id="biking"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="dadJokes">Dad Jokes</label>
+                    <input
+                      type="checkbox"
+                      name="dadJokes"
+                      id="dadJokes"
+                      onChange={boxChange}
+                    />
+                  </div>
+                  <div>
+                    <label htmlFor="cars">Cars/Motorcycles</label>
+                    <input
+                      type="checkbox"
+                      name="cars"
+                      id="cars"
+                    // onChange={boxChange}
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label htmlFor="reading">Reading</label>
-                  <input
-                    type="checkbox"
-                    name="reading"
-                    id="reading"
-                    onChange={boxChange}
-                  />
-                </div>
-              </div>
-              <div>
-                <label htmlFor="exercise">Exercise</label>
-                <input
-                  type="checkbox"
-                  name="exercise"
-                  id="exercise"
-                  onChange={boxChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="gaming">Gaming</label>
-                <input
-                  type="checkbox"
-                  name="gaming"
-                  id="gaming"
-                  onChange={boxChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="computers">Computers</label>
-                <input
-                  type="checkbox"
-                  name="computers"
-                  id="computers"
-                  onChange={boxChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="tech-drones">Tech/Drones</label>
-                <input
-                  type="checkbox"
-                  name="techDrones"
-                  id="tech-drones"
-                  onChange={boxChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="hiking">Hiking</label>
-                <input
-                  type="checkbox"
-                  name="hiking"
-                  id="hiking"
-                  onChange={boxChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="biking">Biking</label>
-                <input
-                  type="checkbox"
-                  name="biking"
-                  id="biking"
-                  onChange={boxChange}
-                />
-              </div>
-              <div>
-                <label htmlFor="dadJokes">Dad Jokes</label>
-                <input
-                  type="checkbox"
-                  name="dadJokes"
-                  id="dadJokes"
-                  onChange={boxChange}
-                />
               </div>
             </div>
           </div>
         </div>
+
         <button className="btn btn-primary mt-2" type="submit">
           Submit
         </button>

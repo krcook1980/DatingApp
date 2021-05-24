@@ -7,8 +7,8 @@ import { ConversationProvider } from './contexts/conversationProvider';
 import { SocketProvider } from './contexts/SocketProvider';
 import Home from './pages/Home';
 import SignupForm from './pages/SignupForm';
-import Settings from './components/SettingsPage'
-
+import Settings from './components/SettingsPage';
+import './App.css'
 
 function App() {
   // const [Id, setId] = useState();
@@ -26,15 +26,15 @@ function App() {
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
-        <div>
-               <Switch>
-                <Route exact path='/' component={Login} />
-                <Route exact path='/Home' component={Home}/>
-                <Route exact path='/Dashboard'>{dashboard}</Route>
-                <Route exact path='/SignupForm' component={SignupForm} />
-                <Route exact path='/Settings' component={Settings} />
-              </Switch>
-       </div>
+      <div>
+        <Switch>
+          <Route exact path='/' component={Login} />
+          <Route exact path='/Home' component={Home} />
+          <Route exact path='/Dashboard'>{dashboard}</Route>
+          <Route exact path='/SignupForm' component={SignupForm} />
+          <Route exact path='/Settings' component={Settings} />
+        </Switch>
+      </div>
     </Router>
 
   );

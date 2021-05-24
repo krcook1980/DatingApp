@@ -1,16 +1,16 @@
 import React from 'react';
 import { Jumbotron, Row } from "react-bootstrap";
 import "./style.css";
+import logo from "../../assets/projectLogo.png"
 
 //Header on both pages
-function Header (){
-    return(
+function Header() {
+    return (
         <Jumbotron fluid>
-            <Row>
-                <h1>Love Is Blind</h1>
-                <p>Join us to find a deeper connection.</p>
-            </Row>
-      </Jumbotron>
+            <div>
+                <img src={logo} alt="Logo" style={{ width: "400px", maxHeight: "400px", marginTop: "15%", paddingLeft: "5%" }} />
+            </div>
+        </Jumbotron>
 
     )
 }
