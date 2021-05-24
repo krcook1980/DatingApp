@@ -16,13 +16,14 @@ export function ConversationProvider({ id, children }) {
     const socket = useSocket();
 
     function createConversation(recipients) {
+        console.log("create ", recipients)
         setConversations(prevConversations => {
             return [...prevConversations, { recipients, messages: [] }]
         })
     }
 
     const addMsg = useCallback(({ recipients, text, sender }) => {
-       console.log(" add ", text)
+       console.log(" add recipient callback ", recipients)
         setConversations(prevConversations => {
           
             let madeChange = false;
@@ -57,21 +58,24 @@ export function ConversationProvider({ id, children }) {
     }, [socket, addMsg])
 
     function sendMsg( recipients, text ) {
+        console.log("in sendMsg conv ", text, recipients)
         socket.emit('send-message', { recipients, text})
         addMsg({ recipients, text, sender: id })
     }
 
     const formattedConversation = conversations.map((conversation, index) => {
+        console.log("in formatted conv ", contacts)
+        
         const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {
-                return contact._id === recipient
+                return contact.id === recipient
             })
             const name = (contact && contact.name) || recipient
             return { id: recipient, name }
         })
         const messages = conversation.messages.map(message => {
             const contact = contacts.find(contact => {
-                return contact._id === message.sender
+                return contact.id === message.sender
             })
             const name = (contact && contact.name || message.sender)
             const fromMe = id === message.sender
@@ -79,7 +83,6 @@ export function ConversationProvider({ id, children }) {
         })
 
         const selected = index === selectedConvIndex
-        console.log("here", {...conversation})
         return { ...conversation, messages, recipients, selected }
     })
 

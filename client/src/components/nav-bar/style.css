@@ -1,0 +1,14 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&display=swap');
+.home{
+    font-family: 'Charmonman', cursive;
+    color: #4c004c;
+   
+  }
+
+  .header{
+    font-family: 'Charmonman', cursive;
+    color: #4c004c;
+    font-size: 1cm;
+    margin-top: -2%
+  }
