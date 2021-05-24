@@ -4,9 +4,10 @@ import API from '../utils/API';
 import Axios from 'axios';
 import Header from '../components/header';
 import UserContext from '../contexts/userProvider';
-import { useHistory } from 'react-router-dom'
+import { useHistory, Link } from 'react-router-dom'
 import Footer from '../components/Footer';
 import './style.css';
+
 
 export default function Login() {
     const { userData, setUserData } = useContext(UserContext)
@@ -66,7 +67,9 @@ export default function Login() {
                         </Row>
                         <Row className="text-center">
                             <Col>
-                                <Button className="btn"><h3>Not a Member? CLICK HERE!!!</h3></Button>
+                                <Link to="./SignupForm">
+                                    <Button className="btn"><h3>Not a Member? CLICK HERE!!!</h3></Button>
+                                </Link>
                             </Col>
                         </Row>
 
