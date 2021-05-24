@@ -205,8 +205,8 @@ export default function SignupForm() {
                 <option value="">Choose one</option>
                 <option value="ocean">Ocean</option>
                 <option value="camping">Camping</option>
-                <option value="mountains">Mountains</option>
-                <option value="couch">Couch</option>
+                <option value="city">City</option>
+                <option value="home">Staycation</option>
               </select>
             </div>
 
@@ -214,10 +214,10 @@ export default function SignupForm() {
               <label htmlFor="animals">How do you feel about pets?</label>
               <select name="animals" id="animals" onChange={handleChange}>
                 <option value="">Choose one</option>
-                <option value="petLover">Love Pets</option>
-                <option value="notMuch">Not So Much</option>
-                <option value="allergic">Allergic</option>
-                <option value="outside">Love Animals In The Wild</option>
+                <option value="dog">Dogs</option>
+                <option value="cat">Cats</option>
+                <option value="other">Love them all</option>
+                <option value="nope">Not for me</option>
               </select>
             </div>
 
@@ -238,7 +238,7 @@ export default function SignupForm() {
                 <option value="">Choose one</option>
 
                 <option value="onTheGo">Always On The Go</option>
-                <option value="crossFit">Crossfit or Die</option>
+                <option value="outdoors">Anything outdoors</option>
                 <option value="gymRat">Gym Rat</option>
                 <option value="leaveMeAlone">Leave Me Alone</option>
               </select>
@@ -254,10 +254,10 @@ export default function SignupForm() {
                 onChange={handleChange}
               >
                 <option value="">Choose one</option>
-                <option value="loud">Loud</option>
+                <option value="outgoing">Outgoing</option>
                 <option value="reserved">Reserved</option>
-                <option value="shy">Shy</option>
-                <option value="leaveMeAlone">Leave Me Alone</option>
+                <option value="funny">Funny</option>
+                <option value="nerdy">Nerdy</option>
               </select>
             </div>
 
@@ -295,10 +295,10 @@ export default function SignupForm() {
                 onChange={handleChange}
               >
                 <option value="">Choose one</option>
-                <option value="movies">Movie Theater</option>
-                <option value="netflix">Netflix</option>
-                <option value="tv">Fox News</option>
-                <option value="chill">Chill</option>
+                <option value="movies">Dinner and a Movie</option>
+                <option value="outside">Do something Outside</option>
+                <option value="music">Go to a Concert</option>
+                <option value="club">Hit the Club</option>
               </select>
             </div>
 
