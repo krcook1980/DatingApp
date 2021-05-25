@@ -92,10 +92,10 @@ export default function SignupForm() {
   }, [profile])
 
   return (
-    <div style={{ background: "whitesmoke" }} className="container col-6 border mt-4 text-center rounded background-info">
+    <div className="container col-6 border mt-4 text-center rounded background-info">
       <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
-        <label className="mt-4">
-          Sign Up To Make A New Friend Or Maybe More!
+        <label className="mt-4 heading">
+          <h2>Sign Up To Make A New Friend Or Maybe More!</h2>
         </label>
 
         <div className="container border mt-4">
@@ -196,7 +196,7 @@ export default function SignupForm() {
           </div>
         </div>
         <div>
-          <label htmlFor="pickOne">If you had to Pick One:</label>
+          <label className="heading" htmlFor="pickOne"><h2>If you had to Pick One:</h2></label>
 
           <div className="container border">
             <div>
@@ -326,10 +326,10 @@ export default function SignupForm() {
           </div>
 
           <div>
-            <p>Check All That Apply</p>
+            <p className="heading"><h2>Check All That Apply</h2></p>
             <div className="container border">
               <div className="row">
-                <div className="col-md-4 p-4">
+                <div className="col-md-6 p-4">
 
                   <div>
                     <label htmlFor="cooking">Cooking</label>
@@ -367,8 +367,7 @@ export default function SignupForm() {
                       onChange={boxChange}
                     />
                   </div>
-                </div>
-                <div className="col-md-4 p-4">
+
 
                   <div>
                     <label htmlFor="exercise">Exercise</label>
@@ -388,6 +387,8 @@ export default function SignupForm() {
                       onChange={boxChange}
                     />
                   </div>
+                </div>
+                <div className="col-md-6 p-4">
                   <div>
                     <label htmlFor="computers">Computers</label>
                     <input
@@ -406,8 +407,7 @@ export default function SignupForm() {
                       onChange={boxChange}
                     />
                   </div>
-                </div>
-                <div className="col-md-4 p-4">
+
 
                   <div>
                     <label htmlFor="hiking">Hiking</label>

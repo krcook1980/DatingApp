@@ -1,9 +1,36 @@
+@import url("https://fonts.googleapis.com/css2?family=Allura&display=swap");
 body {
-  background: hsl(300, 33%, 55%);
+  background: url(./assets/background4.png);
   color: #4c004c;
+  background-repeat: no-repeat;
+  background-position-x: center;
+  background-size: cover;
 }
 .btn {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.4), 0 6px 20px 0 rgba(0, 0, 0, 0.4);
   background: #800080;
   border: #800080;
   color: #d8b2d8;
+}
+.btn:hover {
+  background: hsl(300, 33%, 55%);
+}
+.input {
+  border: solid;
+  border-width: thin;
+  border-color: #4c004c;
+  border-radius: 0cm;
+}
+.container {
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  width: 50%;
+}
+.jumbotron {
+  box-shadow: 0 10px 10px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.login {
+  font-family: "Allura", cursive;
+  font-weight: 400;
+  font-size: xx-large;
+  color: #4c004c;
 }
