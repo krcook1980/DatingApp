@@ -3,8 +3,9 @@ import { Tab, Nav, Button, Modal } from 'react-bootstrap';
 import Conversations from '../Conversations';
 import Contacts from '../DashboardContacts';
 import ConversationModal from '../ConversationModal';
+import './style.css'
 
-export default function Sidebar({Id, contacts}) {
+export default function Sidebar({id, contacts}) {
     const Converstation_Key = 'conversations';
     const Contact_Key = 'contact'
     const [activeKey, setActiveKey] =useState(Converstation_Key);
@@ -15,9 +16,9 @@ export default function Sidebar({Id, contacts}) {
     }
 
     return(
-        <div style={{width: '25%'}} className="d-flex flex-column">
+        <div style={{width: '30%'}} className="d-flex flex-column mb-2">
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
-                <Nav variant="tabs" className="justify-content-center">
+                <Nav variant="tabs" className="justify-content-center chatbar rounded">
                     <Nav.Item>
                         <Nav.Link eventKey={Converstation_Key}>
                             Conversations
@@ -29,7 +30,7 @@ export default function Sidebar({Id, contacts}) {
                         </Nav.Link>
                     </Nav.Item>
                 </Nav>
-            <Tab.Content className="border-right overflow-auto flex-grow-1">
+            <Tab.Content className="border-right overflow-auto flex-grow-1 chatbar ">
                 <Tab.Pane eventKey={Converstation_Key}>
                     <Conversations />
                 </Tab.Pane>
@@ -39,7 +40,7 @@ export default function Sidebar({Id, contacts}) {
             </Tab.Content> 
             
             <Button className="rounded-0" onClick={() => setModalOpen(true)}>
-                New { 'Conversation' }
+                New Conversation
             </Button> 
             </Tab.Container>
 

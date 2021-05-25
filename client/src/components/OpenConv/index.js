@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { Form, InputGroup, Button } from 'react-bootstrap';
 import { useConversations } from '../../contexts/conversationProvider';
+import './style.css'
 
 export default function OpenConv() {
     const [text, setText] = useState('');
@@ -11,6 +12,7 @@ export default function OpenConv() {
 
     function handleSubmit(event) {
         event.preventDefault();
+        console.log("handle send ", selectedConv.recipients)
         sendMsg(
 
             selectedConv.recipients.map(r => r.id),
@@ -34,11 +36,11 @@ export default function OpenConv() {
                                 className={`my-1 d-flex flex-column ${message.fromMe ? 'align-self-end align-items-end' : 'align-items-start'}`}
                             >
                                     <div
-                                        className={`rounded px-2 py-1 ${message.fromMe ? 'bg-info text-white' : 'border'} `}>
+                                        className={`rounded px-2 py-1 ${message.fromMe ? 'bg-light text-dark' : 'bg-warning border'} `}>
                                         {message.text}
                                     </div>
                                     <div
-                                        className={`text-muted small ${message.fromMe ? 'text-right' : ''}`}>
+                                        className={`text-dark small ${message.fromMe ? 'text-right' : ''}`}>
                                         {message.fromMe ? 'You' : message.senderName}
                                     </div>
                             </div>

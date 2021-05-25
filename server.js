@@ -82,11 +82,25 @@ if (process.env.NODE_ENV === "production") {
 
 
 
-//Whenever someone connects this gets executed
+//Whenever someone connects to chat this gets executed
 io.on('connection', function(socket) {
-  console.log('A user connected');
+ 
+  const id = socket.handshake.query.id
+  
+  socket.join(id)
+  console.log('A user connected', id);
+  
+  socket.on('send-message', ({recipients, text})=>{
+    recipients.forEach(recipient => {
+      const newRecipients = recipients.filter(r => r !== recipient)
+      newRecipients.push(id)
+      socket.broadcast.to(recipient).emit('receive-message', {
+        recipients: newRecipients, sender: id, text
+      })
+    })
+  })
 
-  //Whenever someone disconnects this piece of code executed
+  //Whenever someone disconnects from chat this piece of code executed
   socket.on('disconnect', function () {
      console.log('A user disconnected');
   });
