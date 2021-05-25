@@ -92,7 +92,7 @@ export default function SignupForm() {
   }, [profile])
 
   return (
-    <div style={{ background: "whitesmoke" }} className="container col-6 border mt-4 text-center rounded background-info">
+    <div className="container col-6 border mt-4 text-center rounded background-info">
       <form action="" encType="multipart/form-data" onSubmit={handleSubmit}>
         <label className="mt-4">
           Sign Up To Make A New Friend Or Maybe More!

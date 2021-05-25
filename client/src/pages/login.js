@@ -35,12 +35,12 @@ export default function Login() {
     return (
         <>
             <Header />
-            <Container style={{ background: "whitesmoke" }}>
+            <Container>
 
                 <div className="App">
                     <div>
-                        <Row>
-                            <Col md="12">
+                        <Row className="text-center">
+                            <Col md="12" className="txt">
 
                                 <h1>Login Here:</h1>
                             </Col>
@@ -59,17 +59,26 @@ export default function Login() {
                             </Col>
                             <Col md="4">
 
-                                <Button style={{ width: "80%" }} className="btn" onClick={login}>Submit</Button>
+                                <Button style={{ width: "100%" }} className="btn" onClick={login}><h2>Submit</h2></Button>
                             </Col>
                             <Col md="4">
 
                             </Col>
                         </Row>
                         <Row className="text-center">
-                            <Col>
+                            <Col md="12" className="txt" style={{ marginTop: "20px" }}>
+                                <h2>Not a Member Yet?</h2>
+                            </Col>
+                        </Row>
+                        <Row className="text-center">
+                            <Col md="4">
+                            </Col>
+                            <Col md="4">
                                 <Link to="./SignupForm">
-                                    <Button className="btn"><h3>Not a Member? CLICK HERE!!!</h3></Button>
+                                    <Button style={{ width: "100%" }} className="btn"><h2>CLICK HERE</h2></Button>
                                 </Link>
+                            </Col>
+                            <Col md="4">
                             </Col>
                         </Row>
 
