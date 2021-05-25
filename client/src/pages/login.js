@@ -42,7 +42,7 @@ export default function Login() {
                         <Row className="text-center">
                             <Col md="12" className="txt">
 
-                                <h1>Login Here:</h1>
+                                <h1>Login Here</h1>
                             </Col>
                         </Row>
                         <Row className="text-center">
@@ -59,7 +59,7 @@ export default function Login() {
                             </Col>
                             <Col md="4">
 
-                                <Button style={{ width: "100%" }} className="btn" onClick={login}><h2>Submit</h2></Button>
+                                <Button style={{ width: "100%" }} className="btn" onClick={login}><h4>Submit</h4></Button>
                             </Col>
                             <Col md="4">
 
@@ -75,7 +75,7 @@ export default function Login() {
                             </Col>
                             <Col md="4">
                                 <Link to="./SignupForm">
-                                    <Button style={{ width: "100%" }} className="btn"><h2>CLICK HERE</h2></Button>
+                                    <Button style={{ width: "100%" }} className="btn"><h4>CLICK HERE</h4></Button>
                                 </Link>
                             </Col>
                             <Col md="4">

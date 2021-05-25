@@ -6,9 +6,20 @@
   font-family: cursive;
 }
 body {
-  background: url(../assets/background.png);
+  background: url(../assets/background4.png);
   color: #4c004c;
   background-repeat: no-repeat;
   background-position-x: center;
   background-size: cover;
+}
+label,
+input {
+  margin-top: 5px;
+}
+label {
+  margin-right: 10px;
+}
+.heading {
+  margin-top: 20px;
+  font-family: cursive;
 }
