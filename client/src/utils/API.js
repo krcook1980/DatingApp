@@ -14,6 +14,11 @@ export default {
   findMatches: function(userData){
     console.log("in utils api findMatches ", userData)
     return axios.post("/api/findMatches", userData)
+  },
+  updateUser: function(profile){
+    return axios.put("api/updateUser", profile)
+
   }
+
 
 };
