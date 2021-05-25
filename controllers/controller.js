@@ -3,33 +3,18 @@ const bcrypt = require('bcryptjs')
 
 module.exports = {
 
-
     findMatches: function (req, res) {
-
         db.User
-            .find({ _id: req.params.id })
-            .then(user => {
-                const matchInfo = (user[0].surveyInfo);
-                const survey = Object.values(matchInfo)
-                const looking = JSON.stringify(user[0].looking)
-                console.log("this is looking: ", looking)
-                console.log("this is matchInfo: ", survey)
-
-                // db.User.aggregate
-                //     ([
-                //         // { $match: { $text: { $search: matchInfo } } },
-                //         { $match: { gender: looking } },
-                //         { $project: { score: { $meta: 'textScore' }, username: 1 } },
-                //         { $sort: { score: -1 } }, { $limit: 5 }
-                //     ])
-                //     .then(returned => {
-                //         const filteredUsers = returned.filter(user => !user.blockedUsers.includes(req.body.user))
-                //         res.json(filteredUsers)
-                //     })
-                //     .catch(err => res.status(422).json(err))
+            .aggregate([
+                { $match: { gender: req.body.looking } },
+                { $match: { looking: req.body.gender } },
+                { $limit: 5 }
+            ])
+            .then(returned => {
+                const filtered = returned.filter(user => !req.body.myConnections.map(connection => connection.name).includes(user.username))
+                res.json(filtered)
             })
-
-
+            .catch(err => res.status(422).json(err));
     },
 
     createUser: function (req, res) {
@@ -38,8 +23,8 @@ module.exports = {
             if (err) throw err
             if (doc) res.send("User already exists")
             if (!doc) {
-                const hashedPassword = await bcrypt.hash(req.body.password, 10);
-                const newUser = req.body
+                const hashedPassword = await bcrypt.genSalt(req.body.password, 10);
+                const newUser = await req.body
                 newUser.password = hashedPassword;
                 db.User.create(req.body)
                     .then(dbModel => res.json(dbModel))
@@ -47,8 +32,6 @@ module.exports = {
                     .catch(err => res.status(422).json(err));
             }
         })
-
-
     },
 
     update: function (req, res) {
@@ -56,10 +39,9 @@ module.exports = {
         console.log(data, " in controller")
         db.User.findOneAndUpdate(
             { _id: req.body.user },
-            { $push: { myConnections: req.body.name } })
-            .then(dbModel => res.json(dbModel))
+            { $push: { myConnections: { id: req.body.matchId, name: req.body.matchName } } })
+            .then(saved => res.json({ id: req.body.matchId, name: req.body.matchName }))
             .catch(err => res.status(422).json(err))
-
     },
 
     remove: function (req, res) {
@@ -76,17 +58,12 @@ module.exports = {
             .then(users => {
                 const filteredUsers = users.filter(user => !user.blockedUser.includes(req.user._id))
                 res.json(filteredUsers)
-            }
-            )
-
+            })
     },
-
-
 
 
     getUser: function (req, res) {
         console.log("I'm in controller get ", req.params.id)
-        // const userId = "60a2cdb0745bca35843bedb2"
         db.User.findById({ _id: req.params.id })
             .then(user => res.json(user))
             .catch(err => res.status(422).json(err))
@@ -103,3 +80,28 @@ module.exports = {
 
 };
 
+    // This is the code for the desired logic for the application. Will be coming back to work on this properly.
+
+    // findMatches: function (req, res) {
+
+    //     const matchInfo = user.surveyInfo;
+    //     const survey = matchInfo
+    //     const looking = JSON.stringify(user.looking)
+    //     console.log("this is looking: ", looking)
+    //     console.log("this is matchInfo: ", survey)
+
+    //     db.User.aggregate
+
+    //         ([
+    //             { $match: { $text: { $search: survey } } },
+    //             { $match: { gender: looking } },
+    //             { $project: { username: 1 } },
+    //             { $sort: -1 }, { $limit: 5 }
+    //         ])
+    //         .then(returned => {
+    //             res.json(returned)
+    //             console.log(returned)
+
+    //         })
+    //         .catch(err => res.status(422).json(err))
+    // },
