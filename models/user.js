@@ -50,49 +50,45 @@ const user = new mongoose.Schema({
         type: String,
         required: true,
     },
+    vacation: {
+        type: String,
+    },
 
-    surveyInfo:
-        [{
-            vacation: {
-                type: String,
-            },
+    animals: {
+        type: String,
+    },
 
-            animals: {
-                type: String,
-            },
+    flavor: {
+        type: String,
+    },
 
-            flavor: {
-                type: String,
-            },
+    activity: {
+        type: String,
+    },
 
-            activity: {
-                type: String,
-            },
+    personality: {
+        type: String,
+    },
 
-            personality: {
-                type: String,
-            },
+    family: {
+        type: String,
+    },
 
-            family: {
-                type: String,
-            },
+    priorities: {
+        type: String,
+    },
 
-            priorities: {
-                type: String,
-            },
+    entertainment: {
+        type: String,
+    },
 
-            entertainment: {
-                type: String,
-            },
+    alcohol: {
+        type: String,
+    },
 
-            alcohol: {
-                type: String,
-            },
-
-            religion: {
-                type: String,
-            }
-        }],
+    religion: {
+        type: String,
+    },
 
     biking: {
         type: Boolean,
@@ -138,7 +134,10 @@ const user = new mongoose.Schema({
         type: Boolean,
     },
 
-    myConnections: Array,
+    myConnections: [{
+        id: mongoose.Schema.Types.ObjectId,
+        name: String
+    }],
 
     blockedUsers: Array,
 
