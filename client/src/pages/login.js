@@ -26,7 +26,7 @@ export default function Login() {
     return (
         <>
             <Header className="header jumbotron"/>
-            <Container style={{ background: "transparent"}} className="mt-5 p-5 container rounded mb-5">
+            <Container style={{ background: "transparent"}} className="p-5 container rounded mb-5">
 
                 <div className="App">
                     <div>

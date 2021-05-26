@@ -17,9 +17,8 @@ export default function Home() {
     const [contacts, setContacts] = useState([])
     const [matches, setMatches] = useState([])
     const [userId, setUserId] = useState("60aaa5e10df345188c1dc60d")
-    const [update, setUpdate] = useState(false)
     
-
+    console.log("top of home ", userData)
     //Once context sets, get matches and set contacts
     useEffect(() => {
         setContacts(userData.myConnections)

@@ -19,7 +19,7 @@ const NavBar = () => {
       <Nav className=" home">
         <Link to="/home" params={userData} className="home pl-3">Home</Link>
         <Link to="/dashboard" params={userData} className="home pl-3 pr-3">Chat</Link>
-        <Link to="/settings" params={userData} className="home pl-3 pr-3">Settings</Link>
+        <Link to="/settings" params={userData} className="home pr-3">Settings</Link>
         <Link to="/" className="home pr-3">Logout</Link>
 
       </Nav>

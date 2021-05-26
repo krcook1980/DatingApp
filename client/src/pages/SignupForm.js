@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import API from "../utils/API";
 import { useHistory } from "react-router-dom";
 import "./style.css";
+import UserContext from "../contexts/userProvider";
 
 const initialFormData = {
   username: "",
@@ -41,8 +42,10 @@ const hobbies = {
 
 Object.freeze(initialFormData);
 
+// START FROM FUNCTION--------------------
 export default function SignupForm() {
   const history = useHistory();
+  const { userData, setUserData } = useContext(UserContext)
 
   const [formData, updateFormData] = useState({
     ...initialFormData,
@@ -80,8 +83,10 @@ export default function SignupForm() {
   const createUser = async () => {
    
     API.createUser(profile)
-      .then(result => {
-        history.push("/home")
+      .then(res => {
+        console.log(res.data)
+        setUserData(res.data)
+           history.push("/home")
       })
       .catch(err => console.log(err))
   };
@@ -467,7 +472,7 @@ export default function SignupForm() {
           </div>
 
           <div>
-            <p className="heading"><h2>Check All That Apply</h2></p>
+            <h2 className="heading">Check All That Apply</h2>
             <div className="container border">
               <div className="row">
                 <div className="col-md-6 p-4">
