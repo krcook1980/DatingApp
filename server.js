@@ -15,37 +15,40 @@ const db = require('./models')
 
 const PORT = process.env.PORT || 3001;
 
-// PASSPORT STUFF ADDED -----------------------------------------
+// PASSPORT STUFF ADDED ---------------
 const cors = require('cors')
 const passport = require('passport')
 const session =  require('express-session');
 const path = require ("path")
-//passport middleware
- 
+
 app.use(cors({
   origin: "https://love-is-blind.herokuapp.com/",
   credentials: true
 }))
-// app.use(session({
-//   secret: "secret",
-//   resave: true,
-//   saveUninitialized: true
 
-// }))
-var MemoryStore = require('memorystore')(session)
-
-app.use(session({
+  const MemoryStore = require('memorystore')(session)
+  
+  app.use(session({
     cookie: { maxAge: 86400000 },
     store: new MemoryStore({
       checkPeriod: 86400000 // prune expired entries every 24h
     }),
     resave: false,
     secret: 'keyboard cat'
-}))
- 
+  }))
+
+//passport middleware
 app.use(passport.initialize());
 app.use(passport.session())
 require('./passportConfig')(passport)
+
+// Serve up static assets (usually on heroku)
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("./client/build"));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname,"./client/build/index.html"))
+  })
+}
 
 // Connect to the Mongo DB
 mongoose.connect(
@@ -56,8 +59,6 @@ mongoose.connect(
   ()=>{console.log("Mongoose is Connected")}
   
 );
-
-
 
 // Define express middleware
 app.use(express.urlencoded({ extended: true }));
@@ -78,17 +79,6 @@ app.post("/login", (req, res, next) => {
 
 // Use apiRoutes
 app.use(apiRoutes);
-
-
-
-
-// Serve up static assets (usually on heroku)
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("./client/build"));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname,"./client/build/index.html"))
-  })
-}
 
 //Whenever someone connects to chat this gets executed
 io.on('connection', function(socket) {
