@@ -45,9 +45,7 @@ require('./passportConfig')(passport)
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
   app.use(express.static("./client/build"));
-  app.get("/*", (req, res) => {
-    res.sendFile(path.join(__dirname,"./client/build/index.html"))
-  })
+
 }
 
 // Connect to the Mongo DB
@@ -103,6 +101,10 @@ io.on('connection', function(socket) {
      console.log('A user disconnected');
   });
 });
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname,"./client/build/index.html"))
+})
 
 http.listen(5000, function() {
   console.log('listening on *:5000');
