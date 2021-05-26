@@ -18,7 +18,7 @@ export default function Login() {
     const login = () => {
        API.login({username: loginUsername, password: loginPassword})
        .then(res => {
-           console.log("here ", res.data )
+           
            setUserData(res.data)
            history.push("/home")
        })
