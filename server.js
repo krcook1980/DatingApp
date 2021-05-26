@@ -18,16 +18,10 @@ const PORT = process.env.PORT || 3001;
 // PASSPORT STUFF ADDED -----------------------------------------
 const cors = require('cors')
 const passport = require('passport')
-const passportLocal = require('passport-local').Strategy
-const cookieParser = require('cookie-parser')
-const bcrypt = require('bcryptjs')
-const bodyParser=require('body-parser')
 const session =  require('express-session');
-const User = require("./models");
 const path = require ("path")
 //passport middleware
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}))
+ 
 app.use(cors({
   origin: "https://love-is-blind.herokuapp.com/",
   credentials: true
@@ -38,7 +32,7 @@ app.use(session({
   saveUninitialized: true
 
 }))
-app.use(cookieParser("secret"))
+ 
 app.use(passport.initialize());
 app.use(passport.session())
 require('./passportConfig')(passport)
@@ -81,9 +75,6 @@ if (process.env.NODE_ENV === "production") {
     res.sendFile(path.join(__dirname,"./client/build/index.html"))
   })
 }
-
-
-
 
 //Whenever someone connects to chat this gets executed
 io.on('connection', function(socket) {
