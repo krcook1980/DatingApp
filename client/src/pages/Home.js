@@ -27,10 +27,8 @@ export default function Home() {
         setUserId(userData._id)
     }, [userData])
 
-   useEffect(() => {
-    console.log(userData)
-   }, [update])
-   console.log(userData.myConnections)
+   
+   console.log(userData)
 
   
     // Save a match to contacts

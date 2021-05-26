@@ -22,6 +22,10 @@ export default {
   getUser: function(userId){
     console.log("in utils api findMatches ", userId)
     return axios.get("/api/getUser/" + userId)
+  },
+  login: function(userData){
+    console.log("in utils api login ", userData)
+    return axios.post("/login", userData)
   }
 
 

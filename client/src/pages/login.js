@@ -16,21 +16,12 @@ export default function Login() {
     const history = useHistory();
     // 15:00 for functions
     const login = () => {
-        Axios({
-            method: "POST",
-            data: { username: loginUsername, password: loginPassword },
-            withCredentials: true,
-            url: "/"
-        }).then(res => {
-            //if success then get user otherwise alert try again
-            console.log(res.data)
-            if (res.data === "No User") {
-                alert("I am sorry, please try again")
-            } else {
-                setUserData(res.data)
-                history.push("/home")
-            }
-        })
+       API.login({username: loginUsername, password: loginPassword})
+       .then(res => {
+           console.log("here ", res.data )
+           setUserData(res.data)
+           history.push("/home")
+       })
     }
     return (
         <>
