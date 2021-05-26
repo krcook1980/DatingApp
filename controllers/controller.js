@@ -4,7 +4,7 @@ const bcrypt = require('bcryptjs')
 module.exports = {
 
     findMatches: function (req, res) {
-        console.log("in find ", req.body)
+       
         db.User
             .aggregate([
                 { $match: { gender: req.body.looking } },
@@ -38,7 +38,7 @@ module.exports = {
 
     update: function (req, res) {
         const data = req.body.type
-        console.log(data, " in controller")
+       
         db.User.findOneAndUpdate(
             { _id: req.body.user },
             { $push: { myConnections: { id: req.body.matchId, name: req.body.matchName } } })
@@ -73,7 +73,7 @@ module.exports = {
 
 
     getUser: function (req, res) {
-        console.log("I'm in controller get ", req.params.id)
+       
         db.User.findById({ _id: req.params.id })
             .then(user => res.json(user))
             .catch(err => res.status(422).json(err))
