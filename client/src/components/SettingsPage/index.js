@@ -13,47 +13,32 @@ import { useHistory } from "react-router-dom";
 
 function SettingsForm() {
 
-  const { userData } = useContext(UserContext);
+  const { userData, setUserData } = useContext(UserContext);
+  const history = useHistory();
+  const [profile, setProfile] = useState();
+  const initialFormData = {
+    username: "",
+    password: "",
+    email: "",
+    age: "",
+    firstName: "",
+    lastName: "",
+    gender: "",
+    looking: "",
+    vacation: "",
+    animals: "",
+    flavor: "",
+    activity: "",
+    personality: "",
+    family: "",
+    priorities: "",
+    entertainment: "",
+    alcohol: "",
+    religion: ""
   
-  // const [user, setUser] = useState({
-  //     id: "60a5c6ddcb859d42c4ef1c3b",
-  //     username: "CoolGuy420",
-  //     password: "password",
-  //     email: "coolguy420@aol.com",
-  //     age: 69,
-  //     firstName: "Chad",
-  //     lastName: "Bro",
-  //     gender: "Male",
-  //     vacation: "Beach",
-  //     animals: "Dogs",
-  //     flavor: "Sweet",
-  //     activity: "Outdoors",
-  //     personality: "Boring",
-  //     family: "Prefer No Children",
-  //     priorities: "Marriage",
-  //     entertainment: "movies",
-  //     alcohol: "Heavy Drinker",
-  //     religion: "Worship Trees",
-  //     biking: true,
-  //     camping: true,
-  //     computers: false,
-  //     cooking: true,
-  //     dadJokes: false,
-  //     exercise: true,
-  //     fishing: true,
-  //     gaming: false,
-  //     hiking: true,
-  //     reading: false,
-  //     techDrones: false,
-  //     myConnections: [],
-  //     blockedUsers: []
-  // })
+  };
+Object.freeze(initialFormData);
 
-// const SlideInUp1 = styled.div`animation: 15s ${keyframes`${slideInUp}`} infinite`;
-// const SlideInUp2 = styled.div`animation: 10s ${keyframes`${slideInUp}`} infinite`;
-// const SlideInUp3 = styled.div`animation: 20s ${keyframes`${slideInUp}`} infinite`;
-// const SlideInUp4 = styled.div`animation: 13s ${keyframes`${slideInUp}`} infinite`;
-const history = useHistory();
   const handleSubmit = (e) => {
     
     e.preventDefault();
@@ -61,7 +46,6 @@ const history = useHistory();
       ...formData,
       
     });
-    console.log(userData)
   }
 
   const [formData, updateFormData] = useState({
@@ -80,18 +64,14 @@ const history = useHistory();
   }, [profile])
 
   const updateUser = () => {
-    API.updateUser(profile).then(res => history.push("/Home"))
+    console.log("I am update ", profile)
+    // API.updateUser(profile).then(res => {
+    //     setUserData(res.data)
+    //     history.push("/home")
+    // })
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setProfile({
-  //     ...formData,
-      
-  //   });
-  // }
-
-  const [profile, setProfile] = useState();
+  
 
 
   return (
@@ -231,10 +211,10 @@ const history = useHistory();
             <Form.Control as="select" custom value={formData.personality} onChange={handleChange} >
             {/* {(event) =>{userData.personality = (event.target.value)}}> */}
             <option>{userData.personality}</option>
-            <option>Loud</option>
-            <option>Reserved</option>
-            <option>Shy</option>
-            <option>Leave Me Alone</option>
+            <option value="outgoing">Outgoing</option>
+                <option value="reserved">Reserved</option>
+                <option value="funny">Funny</option>
+                <option value="nerdy">Nerdy</option>
             </Form.Control>
             </Form.Group>
 
