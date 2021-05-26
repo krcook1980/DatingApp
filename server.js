@@ -24,12 +24,12 @@ const bcrypt = require('bcryptjs')
 const bodyParser=require('body-parser')
 const session =  require('express-session');
 const User = require("./models");
-
+const path = require ("path")
 //passport middleware
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: "https://love-is-blind.herokuapp.com/",
   credentials: true
 }))
 app.use(session({
@@ -76,7 +76,10 @@ app.use(express.json());
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
+  app.use(express.static("./client/build"));
+  app.get("/*", (req, res) => {
+    res.sendFile(path.join(__dirname,"./client/build/index.html"))
+  })
 }
 
 
