@@ -1,8 +1,8 @@
 .jumbotron {
   background-image: url(https://cdn10.bostonmagazine.com/wp-content/uploads/sites/2/2021/04/header-960x450.png);
   background-size: cover;
-
+  box-shadow: 20px ;
   width: 100%;
-  margin-top: -15%;
+  margin-top: -10%;
   margin-bottom: 15%;
 }

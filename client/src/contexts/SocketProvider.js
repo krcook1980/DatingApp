@@ -13,7 +13,7 @@ export function SocketProvider({ id, children }) {
     useEffect(() => {
         console.log("i am in socket ", id)
         const newSocket= io('http://localhost:5000', {query: {id}})
-        console.log("new socket here ", newSocket)
+        
         setSocket(newSocket)
         return () => newSocket.close()
     }, [id])

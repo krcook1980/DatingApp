@@ -5,12 +5,12 @@ import './style.css'
 
 export default function Contacts() {
   const { contacts } = useContacts()
-  
+  console.log("in dash contacts ", contacts)  
 
   return (
     <ListGroup variant="flush chatList">
-      {contacts.map(contact => (
-        <ListGroup.Item key={contact.id} style={{background: "rgb(254,240,180)"}}>
+      {contacts.map((contact, index) => (
+        <ListGroup.Item key={index} className="liItem">
           {contact.name}
         </ListGroup.Item>
       ))}

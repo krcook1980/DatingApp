@@ -16,7 +16,7 @@ export function ConversationProvider({ id, children }) {
     const socket = useSocket();
 
     function createConversation(recipients) {
-        console.log("create ", recipients)
+        console.log("create conversation", recipients)
         setConversations(prevConversations => {
             return [...prevConversations, { recipients, messages: [] }]
         })
@@ -52,6 +52,7 @@ export function ConversationProvider({ id, children }) {
     }, [setConversations])
 
     useEffect(() => {
+        console.log("hit provider", contacts)
         if(socket == null) return
         socket.on('receive-message', addMsg);
         return () => socket.off('receive-message')
@@ -64,8 +65,6 @@ export function ConversationProvider({ id, children }) {
     }
 
     const formattedConversation = conversations.map((conversation, index) => {
-        console.log("in formatted conv ", contacts)
-        
         const recipients = conversation.recipients.map(recipient => {
             const contact = contacts.find(contact => {
                 return contact.id === recipient
