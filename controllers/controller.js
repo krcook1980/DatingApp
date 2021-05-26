@@ -47,7 +47,7 @@ module.exports = {
     },
 
     updateUser: function(req, res){
-        db.User.UpdateOne(
+        db.User.findOneAndUpdate(
             {_id: req.body._id},
             {$set: req.body}
         )

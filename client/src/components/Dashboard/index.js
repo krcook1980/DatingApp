@@ -27,7 +27,7 @@ export default function Dashboard({Id}){
     </Row>
     <Row className="mt-4">
         <Col>
-        <div className="d-flex" style={{height: '85vh'}}>
+        <div className="d-flex" style={{height: '75vh'}}>
             <Sidebar Id={Id} contacts={contacts}/>
             {selectedConv && <OpenConv />}
        

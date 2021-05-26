@@ -17,7 +17,7 @@ export default function Sidebar({id}) {
     }
 
     return(
-        <div style={{width: '30%'}} className="d-flex flex-column mb-2">
+        <div style={{width: '35%'}} className="d-flex flex-column mb-2">
             <Tab.Container activeKey={activeKey} onSelect={setActiveKey}>
                 <Nav variant="tabs" className="justify-content-center chatbar rounded">
                     <Nav.Item>
