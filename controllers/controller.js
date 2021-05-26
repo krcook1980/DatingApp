@@ -8,7 +8,7 @@ module.exports = {
             .aggregate([
                 { $match: { gender: req.body.looking } },
                 { $match: { looking: req.body.gender } },
-                { $limit: 5 }
+                
             ])
             .then(returned => {
                 const filtered = returned.filter(user => !req.body.myConnections.map(connection => connection.name).includes(user.username))
