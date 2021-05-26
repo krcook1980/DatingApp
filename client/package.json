@@ -6,7 +6,6 @@
   "dependencies": {
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
-    "formik": "^2.2.6",
     "react": "^16.13.1",
     "react-animations": "^1.0.0",
     "react-bootstrap": "^1.5.2",

@@ -5,70 +5,24 @@ import NavBar from "../nav-bar"
 import UserContext from "../../contexts/userProvider";
 import API from '../../utils/API';
 import "../../App.css"
-// import heart from '../assets/heart.png';
-// import { slideInUp } from "react-animations";
-// import styled, { keyframes } from 'styled-components';
-
 import { useHistory } from "react-router-dom";
 
 function SettingsForm() {
 
-  // const { userData } = useContext(UserContext);
-  
-  const [userData, setUserData] = useState({
-      id: "60a5c6ddcb859d42c4ef1c3b",
-      username: "CoolGuy420",
-      password: "password",
-      email: "coolguy420@aol.com",
-      age: 69,
-      firstName: "Chad",
-      lastName: "Bro",
-      gender: "Male",
-      vacation: "Beach",
-      animals: "Dogs",
-      flavor: "Sweet",
-      activity: "Outdoors",
-      personality: "Boring",
-      family: "Prefer No Children",
-      priorities: "Marriage",
-      entertainment: "movies",
-      alcohol: "Heavy Drinker",
-      religion: "Worship Trees",
-      biking: true,
-      camping: true,
-      computers: false,
-      cooking: true,
-      dadJokes: false,
-      exercise: true,
-      fishing: true,
-      gaming: false,
-      hiking: true,
-      reading: false,
-      techDrones: false,
-      myConnections: [],
-      blockedUsers: []
-  })
-
-  
-
-// const SlideInUp1 = styled.div`animation: 15s ${keyframes`${slideInUp}`} infinite`;
-// const SlideInUp2 = styled.div`animation: 10s ${keyframes`${slideInUp}`} infinite`;
-// const SlideInUp3 = styled.div`animation: 20s ${keyframes`${slideInUp}`} infinite`;
-// const SlideInUp4 = styled.div`animation: 13s ${keyframes`${slideInUp}`} infinite`;
-const history = useHistory();
+  const { userData, setUserData } = useContext(UserContext);
+  const history = useHistory();
+  const [profile, setProfile] = useState()
+  const [formData, updateFormData] = useState({
+    // ...initialFormData,
+  });
 
   const handleSubmit = (e) => {
-    
     e.preventDefault();
     setProfile({
       ...formData,
       
     });
   }
-
-  const [formData, updateFormData] = useState({
-    // ...initialFormData,
-  });
 
   const handleChange = (e) => {
     updateFormData({
@@ -81,22 +35,16 @@ const history = useHistory();
     profile && updateUser()
   }, [profile])
 
-  // const updateUser = () => {
-  //   API.updateUser(profile).then(res => history.push("/Home"))
-  // }
 
   const updateUser = () => {
-   
-    API.updateUser(profile).then(res => {
+    API.updateUser(userData).then(res => {
+      console.log(res.data)
         setUserData(res.data)
         history.push("/home")
     })
-
   }
 
   
-
-
   return (
     
     <Container>
@@ -124,7 +72,7 @@ const history = useHistory();
 
             <Form.Group as={Col} controlId ="formPassword">
             <Form.Label>Password</Form.Label>
-            <Form.Control placeholder={userData.password} value={formData.password}
+            <Form.Control placeholder="password" value={formData.password}
               onChange={handleChange} />
             {/* <Form.Control.Feedback>
             Please Enter a Password.

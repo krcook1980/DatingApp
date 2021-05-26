@@ -47,6 +47,7 @@ module.exports = {
     },
 
     updateUser: function(req, res){
+        console.log("updateUser here ", req.body)
         db.User.findOneAndUpdate(
             {_id: req.body._id},
             {$set: req.body}
