@@ -42,7 +42,7 @@ module.exports = {
         db.User.findOneAndUpdate(
             { _id: req.body.user },
             { $push: { myConnections: { id: req.body.matchId, name: req.body.matchName } } })
-            .then(saved => res.json({ id: req.body.matchId, name: req.body.matchName }))
+            .then(saved => res.json(saved))
             .catch(err => res.status(422).json(err))
     },
 
