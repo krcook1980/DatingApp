@@ -20,7 +20,7 @@ export default function Login() {
             method: "POST",
             data: { username: loginUsername, password: loginPassword },
             withCredentials: true,
-            url: "http://localhost:3000/login"
+            url: "/"
         }).then(res => {
             //if success then get user otherwise alert try again
             console.log(res.data)

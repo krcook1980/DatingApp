@@ -56,6 +56,7 @@ function SettingsForm() {
 // const SlideInUp3 = styled.div`animation: 20s ${keyframes`${slideInUp}`} infinite`;
 // const SlideInUp4 = styled.div`animation: 13s ${keyframes`${slideInUp}`} infinite`;
 const history = useHistory();
+
   const handleSubmit = (e) => {
     
     e.preventDefault();
@@ -63,7 +64,6 @@ const history = useHistory();
       ...formData,
       
     });
-    console.log(userData)
   }
 
   const [formData, updateFormData] = useState({
@@ -87,21 +87,15 @@ const history = useHistory();
 
   const updateUser = () => {
     console.log("I am update ", profile)
+
     API.updateUser(profile).then(res => {
         setUserData(res.data)
         history.push("/home")
     })
+
   }
 
-  // const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   setProfile({
-  //     ...formData,
-      
-  //   });
-  // }
-
-  const [profile, setProfile] = useState();
+  
 
 
   return (
@@ -248,9 +242,11 @@ const history = useHistory();
             onChange={(event) =>{userData.personality = (event.target.value)}}>
             <option>{userData.personality}</option>
             <option value="outgoing">Outgoing</option>
+
             <option value="reserved">Reserved</option>
             <option value="funny">Funny</option>
             <option value="nerdy">Nerdy</option>
+
             </Form.Control>
             </Form.Group>
 
