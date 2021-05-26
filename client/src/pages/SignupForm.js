@@ -82,7 +82,7 @@ export default function SignupForm() {
     API.createUser(profile)
       .then(result => {
         console.log(result)
-        history.pushState("/home")
+        history.push("/home")
       })
       .catch(err => console.log(err))
   };
@@ -182,16 +182,16 @@ export default function SignupForm() {
             <label htmlFor="gender">I am a ...</label>
             <select name="gender" id="gender" onChange={handleChange}>
               <option value="">Choose one</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
           </div>
           <div>
             <label htmlFor="looking">Looking for a ...</label>
             <select name="looking" id="looking" onChange={handleChange}>
               <option value="">Choose one</option>
-              <option value="Male">Male</option>
-              <option value="Female">Female</option>
+              <option value="male">Male</option>
+              <option value="female">Female</option>
             </select>
           </div>
         </div>
@@ -280,8 +280,8 @@ export default function SignupForm() {
                 <option value="">Choose one</option>
                 <option value="money">Money</option>
                 <option value="time">Time</option>
-                <option value="Respect">Respect</option>
-                <option value="Autonomy">Autonomy</option>
+                <option value="respect">Respect</option>
+                <option value="autonomy">Autonomy</option>
               </select>
             </div>
 

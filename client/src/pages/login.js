@@ -34,48 +34,48 @@ export default function Login() {
     }
     return (
         <>
-            <Header />
-            <Container>
+            <Header className="header jumbotron"/>
+            <Container style={{ background: "transparent"}} className="mt-5 p-5 container rounded mb-5">
 
                 <div className="App">
                     <div>
-                        <Row className="text-center">
-                            <Col md="12" className="txt">
+                        <Row>
+                            <Col md="12" className="text-center login">
 
-                                <h1>Login Here</h1>
+                                <h1>User Login</h1>
                             </Col>
                         </Row>
                         <Row className="text-center">
-                            <Col md="6">
+                            <Col md="6" className="text-right">
 
-                                <input placeholder="username" onChange={e => setLoginUsername(e.target.value)} />
+                                <input placeholder="username" className="input rounded text-center" onChange={e => setLoginUsername(e.target.value)} />
                             </Col>
-                            <Col md="6">
-                                <input placeholder="password" onChange={e => setLoginPassword(e.target.value)} />
+                            <Col md="6" className="text-left">
+                                <input placeholder="password" className="input rounded text-center" onChange={e => setLoginPassword(e.target.value)} />
                             </Col>
                         </Row>
-                        <Row className="text-center">
+                        <Row className="text-center mt-3">
                             <Col md="4">
-                            </Col>
-                            <Col md="4">
-
-                                <Button style={{ width: "100%" }} className="btn" onClick={login}><h4>Submit</h4></Button>
                             </Col>
                             <Col md="4">
 
+                                <Button style={{ width: "80%" }} className="btn" onClick={login}>Submit</Button>
+                            </Col>
+                            <Col md="4">
+
+                            </Col>
+                        </Row>
+                        <Row className="text-center mt-5">
+                            <Col>
+                            <h2 className="login">Not a member yet?</h2>
                             </Col>
                         </Row>
                         <Row className="text-center">
-                            <Col md="12" className="txt" style={{ marginTop: "20px" }}>
-                                <h2>Not a Member Yet?</h2>
+                        <Col md="4">
                             </Col>
-                        </Row>
-                        <Row className="text-center">
-                            <Col md="4">
-                            </Col>
-                            <Col md="4">
+                            <Col>
                                 <Link to="./SignupForm">
-                                    <Button style={{ width: "100%" }} className="btn"><h4>CLICK HERE</h4></Button>
+                                    <Button style={{ width: "80%" }}className="btn ">Join Today</Button>
                                 </Link>
                             </Col>
                             <Col md="4">
