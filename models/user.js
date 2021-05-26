@@ -134,17 +134,14 @@ const user = new mongoose.Schema({
         type: Boolean,
     },
 
-    myConnections: [{
-        id: mongoose.Schema.Types.ObjectId,
-        name: String
-    }],
+    myConnections: Array,
 
     blockedUsers: Array,
 
 
 });
 
-user.index({ vacation: 'text', animals: 'text', flavor: 'text', activity: 'text', personality: 'text', family: 'text', priorities: 'text', entertainment: 'text', alcohol: 'text', religion: 'text' })
+// user.index({ vacation: 'text', animals: 'text', flavor: 'text', activity: 'text', personality: 'text', family: 'text', priorities: 'text', entertainment: 'text', alcohol: 'text', religion: 'text' })
 
 
 module.exports = mongoose.model("User", user)

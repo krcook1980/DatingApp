@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Charmonman:wght@700&display=swap');
 .btn {
   margin-top: 10px;
   font-family: cursive;
@@ -7,7 +8,7 @@
 }
 body {
   background: url(../assets/background4.png);
-  color: #4c004c;
+  color: #4C004C;
   background-repeat: no-repeat;
   background-position-x: center;
   background-size: cover;
@@ -21,5 +22,11 @@ label {
 }
 .heading {
   margin-top: 20px;
-  font-family: cursive;
+  font-family: 'Charmonman', cursive;
+}
+select {
+  margin: 5px;
+}
+input {
+  float: right;
 }

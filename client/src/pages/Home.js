@@ -7,7 +7,6 @@ import Matches from '../components/Matches';
 import Navbar from '../components/nav-bar';
 import UserContext from '../contexts/userProvider';
 import './style.css';
-import Background from "../components/background/background.mp4"
 
 // Begin Home Component
 export default function Home() {

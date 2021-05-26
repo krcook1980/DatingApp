@@ -18,6 +18,10 @@ export default {
   updateUser: function(profile){
     return axios.put("api/updateUser", profile)
 
+  },
+  getUser: function(userId){
+    console.log("in utils api findMatches ", userId)
+    return axios.get("/api/getUser/" + userId)
   }
 
 
