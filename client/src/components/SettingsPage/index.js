@@ -86,8 +86,7 @@ const history = useHistory();
   // }
 
   const updateUser = () => {
-    console.log("I am update ", profile)
-
+   
     API.updateUser(profile).then(res => {
         setUserData(res.data)
         history.push("/home")

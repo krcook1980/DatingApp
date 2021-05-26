@@ -75,13 +75,12 @@ export default function SignupForm() {
       ...checkData,
     });
   }
-  console.log(profile, "I am profile");
+ 
   // API Call
   const createUser = async () => {
-    console.log(profile, " in form side")
+   
     API.createUser(profile)
       .then(result => {
-        console.log(result)
         history.push("/home")
       })
       .catch(err => console.log(err))

@@ -5,7 +5,6 @@ import './style.css'
 
 export default function Contacts() {
   const { contacts } = useContacts()
-  console.log("in dash contacts ", contacts)  
 
   return (
     <ListGroup variant="flush chatList">

@@ -16,14 +16,12 @@ export function ConversationProvider({ id, children }) {
     const socket = useSocket();
 
     function createConversation(recipients) {
-        console.log("create conversation", recipients)
         setConversations(prevConversations => {
             return [...prevConversations, { recipients, messages: [] }]
         })
     }
 
     const addMsg = useCallback(({ recipients, text, sender }) => {
-       console.log(" add recipient callback ", recipients)
         setConversations(prevConversations => {
           
             let madeChange = false;
@@ -52,14 +50,12 @@ export function ConversationProvider({ id, children }) {
     }, [setConversations])
 
     useEffect(() => {
-        console.log("hit provider", contacts)
         if(socket == null) return
         socket.on('receive-message', addMsg);
         return () => socket.off('receive-message')
     }, [socket, addMsg])
 
     function sendMsg( recipients, text ) {
-        console.log("in sendMsg conv ", text, recipients)
         socket.emit('send-message', { recipients, text})
         addMsg({ recipients, text, sender: id })
     }
@@ -101,7 +97,6 @@ export function ConversationProvider({ id, children }) {
 }
 
 function arrayEquality(a, b) {
-    console.log(a, " whats here ", b)
     if (a.length !== b.length) return false
     a.sort()
     b.sort()
