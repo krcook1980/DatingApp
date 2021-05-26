@@ -13,41 +13,43 @@ import { useHistory } from "react-router-dom";
 
 function SettingsForm() {
 
-  const { userData } = useContext(UserContext);
+  // const { userData } = useContext(UserContext);
   
-  // const [user, setUser] = useState({
-  //     id: "60a5c6ddcb859d42c4ef1c3b",
-  //     username: "CoolGuy420",
-  //     password: "password",
-  //     email: "coolguy420@aol.com",
-  //     age: 69,
-  //     firstName: "Chad",
-  //     lastName: "Bro",
-  //     gender: "Male",
-  //     vacation: "Beach",
-  //     animals: "Dogs",
-  //     flavor: "Sweet",
-  //     activity: "Outdoors",
-  //     personality: "Boring",
-  //     family: "Prefer No Children",
-  //     priorities: "Marriage",
-  //     entertainment: "movies",
-  //     alcohol: "Heavy Drinker",
-  //     religion: "Worship Trees",
-  //     biking: true,
-  //     camping: true,
-  //     computers: false,
-  //     cooking: true,
-  //     dadJokes: false,
-  //     exercise: true,
-  //     fishing: true,
-  //     gaming: false,
-  //     hiking: true,
-  //     reading: false,
-  //     techDrones: false,
-  //     myConnections: [],
-  //     blockedUsers: []
-  // })
+  const [userData, setUserData] = useState({
+      id: "60a5c6ddcb859d42c4ef1c3b",
+      username: "CoolGuy420",
+      password: "password",
+      email: "coolguy420@aol.com",
+      age: 69,
+      firstName: "Chad",
+      lastName: "Bro",
+      gender: "Male",
+      vacation: "Beach",
+      animals: "Dogs",
+      flavor: "Sweet",
+      activity: "Outdoors",
+      personality: "Boring",
+      family: "Prefer No Children",
+      priorities: "Marriage",
+      entertainment: "movies",
+      alcohol: "Heavy Drinker",
+      religion: "Worship Trees",
+      biking: true,
+      camping: true,
+      computers: false,
+      cooking: true,
+      dadJokes: false,
+      exercise: true,
+      fishing: true,
+      gaming: false,
+      hiking: true,
+      reading: false,
+      techDrones: false,
+      myConnections: [],
+      blockedUsers: []
+  })
+
+  
 
 // const SlideInUp1 = styled.div`animation: 15s ${keyframes`${slideInUp}`} infinite`;
 // const SlideInUp2 = styled.div`animation: 10s ${keyframes`${slideInUp}`} infinite`;
@@ -79,8 +81,16 @@ const history = useHistory();
     profile && updateUser()
   }, [profile])
 
+  // const updateUser = () => {
+  //   API.updateUser(profile).then(res => history.push("/Home"))
+  // }
+
   const updateUser = () => {
-    API.updateUser(profile).then(res => history.push("/Home"))
+    console.log("I am update ", profile)
+    API.updateUser(profile).then(res => {
+        setUserData(res.data)
+        history.push("/home")
+    })
   }
 
   // const handleSubmit = (e) => {
@@ -156,29 +166,31 @@ const history = useHistory();
             <Form.Label>Gender</Form.Label>
             <Form.Control as="select" custom value={formData.gender} onChange={handleChange} >
             {/* {(event) =>{userData.gender = (event.target.value)}}> */}
-            <option>Female</option>
-            <option>Male</option>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
             </Form.Control>
           </Form.Group>
 
           <Form.Group as={Col} >
             <Form.Label>Looking For</Form.Label>
-            <Form.Control as="select" custom value={formData.gender} onChange={handleChange} >
-            {/* {(event) =>{userData.gender = (event.target.value)}}> */}
-            <option>Female</option>
-            <option>Male</option>
+            <Form.Control as="select" custom 
+            // value={formData.gender} onChange={handleChange} >
+            onChange={(event) =>{userData.gender = (event.target.value)}}>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
             </Form.Control>
           </Form.Group>
 
           <Form.Group as={Col} >
             <Form.Label>Vacation Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.vacation} onChange={handleChange} >
-            {/* {(event) =>{userData.vacation = (event.target.value)}}> */}
+            <Form.Control as="select" custom onChange=
+            // value={formData.vacation} onChange={handleChange} >
+            {(event) =>{userData.vacation = (event.target.value)}}>
             <option>{userData.vacation}</option>
-            <option>Beach</option>
-            <option>Camping</option>
-            <option>Mountains</option>
-            <option>Couch</option>
+            <option value="ocean">Ocean</option>
+            <option value="camping">Camping</option>
+            <option value="city">City</option>
+            <option value="home">Staycation</option>
             </Form.Control>
             </Form.Group>
         </Form.Row>
@@ -188,37 +200,40 @@ const history = useHistory();
 
             <Form.Group as={Col} >
             <Form.Label>Pet Preference</Form.Label>
-            <Form.Control as="select" custom  value={formData.animals} onChange={handleChange} >
-            {/* {(event) =>{userData.animals = (event.target.value)}}> */}
+            <Form.Control as="select" custom  
+            // value={formData.animals} onChange={handleChange} >
+            onChange={(event) =>{userData.animals = (event.target.value)}}>
             <option>{userData.animals}</option>
-            <option>Love Pets</option>
-            <option>Not a fan of Pets</option>
-            <option>Allergic</option>
-            <option>Love Animals in the Wild</option>
+            <option value="dog">Dogs</option>
+            <option value="cat">Cats</option>
+            <option value="other">Love them all</option>
+            <option value="nope">Not for me</option>
             </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} >
             <Form.Label>Snack Flavor Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.flavor} onChange={handleChange} >
-            {/* {(event) =>{userData.flavor = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.flavor} onChange={handleChange} >
+            onChange={(event) =>{userData.flavor = (event.target.value)}}>
             <option>{userData.flavor}</option>
-            <option>Sweet</option>
-            <option>Salty</option>
-            <option>Spicy</option>
-            <option>Plain</option>
+            <option value="sweet">Sweet</option>
+            <option value="salty">Salty</option>
+            <option value="spicy">Spicy</option>
+            <option value="plain">Plain</option>
             </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} >
             <Form.Label>Activity Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.activity} onChange={handleChange} >
-            {/* {(event) =>{userData.activity = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.activity} onChange={handleChange} >
+            onChange={(event) =>{userData.activity = (event.target.value)}}>
             <option>{userData.activity}</option>
-            <option>Always on the Go</option>
-            <option>Crossfit or Die</option>
-            <option>Gym Rat</option>
-            <option>Leave Me Alone</option>
+            <option value="onTheGo">Always On The Go</option>
+            <option value="outdoors">Anything outdoors</option>
+            <option value="gymRat">Gym Rat</option>
+            <option value="leaveMeAlone">Leave Me Alone</option>
             </Form.Control>
             </Form.Group>
 
@@ -228,37 +243,41 @@ const history = useHistory();
             
             <Form.Group as={Col} >
             <Form.Label>Personality Type</Form.Label>
-            <Form.Control as="select" custom value={formData.personality} onChange={handleChange} >
-            {/* {(event) =>{userData.personality = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.personality} onChange={handleChange} >
+            onChange={(event) =>{userData.personality = (event.target.value)}}>
             <option>{userData.personality}</option>
-            <option>Loud</option>
-            <option>Reserved</option>
-            <option>Shy</option>
-            <option>Leave Me Alone</option>
+            <option value="outgoing">Outgoing</option>
+            <option value="reserved">Reserved</option>
+            <option value="funny">Funny</option>
+            <option value="nerdy">Nerdy</option>
             </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} >
             <Form.Label>Child Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.family} onChange={handleChange} >
-            {/* {(event) =>{userData.family = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.family} onChange={handleChange} >
+            onChange={(event) =>{userData.family = (event.target.value)}}>
             <option>{userData.family}</option>
-            <option>Have Kids</option>
-            <option>Want Kids</option>
-            <option>Prefer no Kids</option>
-            <option>Have Kids and want More</option>
+            <option value="">Choose one</option>
+            <option value="haveKids">Have Kids</option>
+            <option value="wantKids">Want Kids</option>
+            <option value="notInterested">Prefer No Children</option>
+            <option value="wantMore">Have Kids, Want More.</option>
             </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} >
             <Form.Label>Priority Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.priorities} onChange={handleChange} >
-            {/* {(event) =>{userData.priorities = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.priorities} onChange={handleChange} >
+            onChange={(event) =>{userData.priorities = (event.target.value)}}>
             <option>{userData.priorities}</option>
-            <option>Money</option>
-            <option>Time</option>
-            <option>Respect</option>
-            <option>Autonomy</option>
+            <option value="money">Money</option>
+            <option value="time">Time</option>
+            <option value="respect">Respect</option>
+            <option value="autonomy">Autonomy</option>
             </Form.Control>
             </Form.Group>          
         </Form.Row>
@@ -267,37 +286,40 @@ const history = useHistory();
 
             <Form.Group as={Col} >
             <Form.Label>Entertainment Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.entertainment} onChange={handleChange} >
-            {/* {(event) =>{userData.entertainment = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.entertainment} onChange={handleChange} >
+            onChange={(event) =>{userData.entertainment = (event.target.value)}}>
             <option>{userData.entertainment}</option>
-            <option>Movie Theater</option>
-            <option>Netflix</option>
-            <option>T.V.</option>
-            <option>Chill</option>
+            <option value="movies">Dinner and a Movie</option>
+            <option value="outside">Do something Outside</option>
+            <option value="music">Go to a Concert</option>
+            <option value="club">Hit the Club</option>
             </Form.Control>
             </Form.Group>
 
             <Form.Group as={Col} >
             <Form.Label>Alcohol Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.alcohol} onChange={handleChange} >
-            {/* {(event) =>{userData.alcohol = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.alcohol} onChange={handleChange} >
+            onChange={(event) =>{userData.alcohol = (event.target.value)}}>
             <option>{userData.alcohol}</option>
-            <option>Heavy Drinker</option>
-            <option>Moderate Drinker</option>
-            <option>Social Drinker</option>
-            <option>Don't Drink</option>
+            <option value="heavyDrinker">Heavy Drinker</option>
+            <option value="moderateDrinker">Moderate Drinker</option>
+            <option value="socialDrinker">Social Drinker</option>
+            <option value="never">Never</option>
             </Form.Control>
             </Form.Group>
 
               <Form.Group as={Col} >
             <Form.Label>Religeous Preference</Form.Label>
-            <Form.Control as="select" custom value={formData.alcohol} onChange={handleChange} >
-            {/* {(event) =>{userData.religion = (event.target.value)}}> */}
+            <Form.Control as="select" custom 
+            // value={formData.alcohol} onChange={handleChange} >
+            onChange={(event) =>{userData.religion = (event.target.value)}}>
             <option>{userData.religion}</option>
-            <option>Very Religious</option>
-            <option>Moderately Religeous</option>
-            <option>Not Religeous</option>
-            <option>Worship Trees</option>
+            <option value="veryReligious">Very Religious</option>
+            <option value="aLittle">Moderately Religious</option>
+            <option value="worshipTrees">Worship Trees</option>
+            <option value="notAtAll">Not Even A Little</option>
             </Form.Control>
             </Form.Group>          
         </Form.Row>
