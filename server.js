@@ -57,6 +57,12 @@ mongoose.connect(
   
 );
 
+
+
+// Define express middleware
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
+
 app.post("/login", (req, res, next) => {
     passport.authenticate("local", (err, user, info) => {
       if (err) throw err;
@@ -74,9 +80,7 @@ app.post("/login", (req, res, next) => {
 app.use(apiRoutes);
 
 
-// Define express middleware
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
+
 
 // Serve up static assets (usually on heroku)
 if (process.env.NODE_ENV === "production") {

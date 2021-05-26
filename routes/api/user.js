@@ -11,7 +11,7 @@ router.route('/')
 router.route("/findMatches")
     .post(userController.findMatches)
 
-    router.route('/:id')
+router.route('/:id')
     .get(userController.getUser)
 
 router.route('/updateUser')    

@@ -4,6 +4,7 @@ const bcrypt = require('bcryptjs')
 module.exports = {
 
     findMatches: function (req, res) {
+        console.log("in find ", req.body)
         db.User
             .aggregate([
                 { $match: { gender: req.body.looking } },
