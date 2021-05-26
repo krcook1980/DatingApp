@@ -31,14 +31,11 @@
    - /settings will allow you to update some of your choices
 
    ## Resources
-   Bootcamp Activities from Week 12, 13, and 14.  
-   [MySql](https://dev.mysql.com/)  
-   [Handelbars](https://handlebarsjs.com/)  
+   
    [W3 Schools](https://www.w3schools.com/)  
    [Stack Overflow](https://stackoverflow.com/)   
-   [Plotly](https://plotly.com/javascript/)  
-   [Sequelize](https://sequelize.org/v5/)  
    [Passportjs](http://www.passportjs.org/)  
+   []
 
   ## Collaborators
   [Andrew Burke](https://github.com/AndrewBurke87)
@@ -53,5 +50,6 @@
 
    ## Screenshots
 
-  ![Screenshot](https://github.com/krcook1980/Jabs/blob/main/public/assets/scr1.JPG?raw=true)
-   ![Screenshot](https://github.com/krcook1980/Jabs/blob/main/public/assets/scr2.JPG?raw=true)
+  ![Screenshot](https://github.com/krcook1980/herokuIssue/blob/master/client/src/assets/scrLogin.JPG?raw=true)
+  ![Screenshot](https://github.com/krcook1980/herokuIssue/blob/master/client/src/assets/scrHome.JPG?raw=true)
+  ![Screenshot](https://github.com/krcook1980/herokuIssue/blob/master/client/src/assets/scrChat.JPG?raw=true)
