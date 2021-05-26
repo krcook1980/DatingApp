@@ -26,11 +26,21 @@ app.use(cors({
   origin: "https://love-is-blind.herokuapp.com/",
   credentials: true
 }))
-app.use(session({
-  secret: "secret",
-  resave: true,
-  saveUninitialized: true
+// app.use(session({
+//   secret: "secret",
+//   resave: true,
+//   saveUninitialized: true
 
+// }))
+var MemoryStore = require('memorystore')(session)
+
+app.use(session({
+    cookie: { maxAge: 86400000 },
+    store: new MemoryStore({
+      checkPeriod: 86400000 // prune expired entries every 24h
+    }),
+    resave: false,
+    secret: 'keyboard cat'
 }))
  
 app.use(passport.initialize());
