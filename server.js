@@ -52,7 +52,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/MyDatingApp",
+  process.env.MONGODB_URI || "mongodb+srv://root:passw0rd@cluster0.hmmp4.mongodb.net/MyDatingApp?retryWrites=true&w=majority",
   { useNewUrlParser: true,
     useUnifiedTopology: true
   },
