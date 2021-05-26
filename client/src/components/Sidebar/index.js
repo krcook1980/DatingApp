@@ -5,11 +5,12 @@ import Contacts from '../DashboardContacts';
 import ConversationModal from '../ConversationModal';
 import './style.css'
 
-export default function Sidebar({id, contacts}) {
+export default function Sidebar({id}) {
     const Converstation_Key = 'conversations';
     const Contact_Key = 'contact'
     const [activeKey, setActiveKey] =useState(Converstation_Key);
     const [modalOpen, setModalOpen] = useState(false);
+    
     
     function closeModal () {
         setModalOpen(false)
@@ -35,7 +36,7 @@ export default function Sidebar({id, contacts}) {
                     <Conversations />
                 </Tab.Pane>
                 <Tab.Pane eventKey={Contact_Key}>
-                    <Contacts contacts={contacts}/>
+                    <Contacts />
                 </Tab.Pane>
             </Tab.Content> 
             

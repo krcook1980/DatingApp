@@ -1,23 +1,31 @@
-import React from 'react'
+import React, {useContext} from 'react'
 import { Navbar, Nav } from 'react-bootstrap'
-import './style.css'
+import './style.css';
+import {Link} from 'react-router-dom'
+import UserContext from '../../contexts/userProvider'
+import ProjectLogo1 from '../../assets/projectLogo3.png'
 // import isAuthenticated from '../lib/isAuthenticated'
 
-const NavBar = () => (
+const NavBar = () => {
+  const { userData } = useContext(UserContext)
+
+ 
+  return(
 <>
   <Navbar expand="lg" >
-   
+  {/* <Navbar.Brand href="#home"><img src={ProjectLogo} style={{width: "200px"}}/></Navbar.Brand> */}
     <Navbar.Toggle aria-controls="basic-navbar-nav" />
     <Navbar.Collapse id="basic-navbar-nav" className="justify-content-end">
       <Nav className=" home">
-        <Nav.Link href="/home">Home</Nav.Link>
-        <Nav.Link href="/dashboard">Chat</Nav.Link>
-        <Nav.Link href="/settings">Settings</Nav.Link>
+        <Link to="/home" params={userData} className="home pl-3">Home</Link>
+        <Link to="/dashboard" params={userData} className="home pl-3 pr-3">Chat</Link>
+        <Link to="/settings" params={userData} className="home pr-3">Settings</Link>
       </Nav>
     </Navbar.Collapse>
   </Navbar>
-  <header className="header text-center">Love is Blind</header>
+  <header className="header text-center"><img src={ProjectLogo1} style={{width: "350px", marginTop: "-20px"}}/></header>
   </>
-)
+  )
+  }
 
 export default NavBar;

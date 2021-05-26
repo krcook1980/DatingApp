@@ -1,9 +1,12 @@
 import React from 'react';
 import { ListGroup, Button, Col, Row } from 'react-bootstrap';
-import Tada from '../Tada'
+import Tada from '../Tada';
+import './style.css'
 
 export default function Matches({ matches, saveContact }) {
-  
+
+
+
   return (
     <>
       <Row >
@@ -22,13 +25,12 @@ export default function Matches({ matches, saveContact }) {
 
           <div className="text-center">
 
-            <ListGroup variant="flush">
+            <ListGroup variant="flush" style={{ backgroundColor: 'transparent' }}>
               {matches.map((match, index) => (
-                <ListGroup.Item key={index}>
+                <ListGroup.Item key={index} style={{ backgroundColor: 'transparent' }}>
                   <Row>
                     <Col md="6">
-                      <h4 className="pt-3">{match.username}</h4>
-                      <p>{match.gender} ◈ {match.age}</p>
+                      <h4 className=" home pt-2">{match.username}</h4>
                     </Col>
                     <Col md="6">
                       <Button
@@ -37,8 +39,22 @@ export default function Matches({ matches, saveContact }) {
                         name={match.username}
                         onClick={() => saveContact(match)}
                       >
-                        Start an epic conversation
-                </Button>
+                        Add to My Connections
+                  </Button>
+                    </Col>
+                  </Row>
+                  <Row>
+                    <Col md="6" className="text-left pl-4">
+
+                      <p>◈ I am {match.age} years old.</p>
+                      <p>◈ People would say I am {match.personality}.</p>
+                      <p>◈ My biggest priority is {match.priorities}.  </p>
+
+                    </Col>
+                    <Col md="6" className="text-left pl-4">
+                      <p>{match.family === "notInterested" ? "◈ I prefer no children." : "◈ Families are great!"}</p>
+                      <p>{match.animals === "nope" ? "◈ Animals are not for me." : "◈ Pets are wonderful!"}</p>
+                      <p>{match.activity === "leaveMeAlone" ? "◈ I am not very active." : "◈ Exercise is amazing!"}</p>
                     </Col>
                   </Row>
                 </ListGroup.Item>

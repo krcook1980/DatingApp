@@ -8,7 +8,7 @@ function Header() {
     return (
         <Jumbotron fluid>
             <div>
-                <img src={logo} alt="Logo" style={{ width: "400px", maxHeight: "400px", marginTop: "15%", paddingLeft: "5%" }} />
+                <img src={logo} alt="Logo" style={{ width: "400px", maxHeight: "400px", marginTop: "10%", paddingLeft: "5%" }} />
             </div>
         </Jumbotron>
 
