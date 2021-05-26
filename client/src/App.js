@@ -14,8 +14,7 @@ import './App.css'
 function App() {
   const [userData, setUserData] = useState({})
   const id = userData.username
-  console.log("in app ", id)
- 
+   
   const dashboard = (
     <SocketProvider id={id}>
       <ContactsProvider id={id}>

@@ -3,9 +3,11 @@
 [Deployed Page](https://love-is-blind.herokuapp.com/)
 
   ## Description
-  This dating/chat app matches users based on common interests and allows them to chat. With no pictures allowed, this dating app is making genuine connections for genuine people.
+  This dating/chat app matches users based on common interests and allows them to chat. With no pictures allowed, this dating app is making genuine connections for genuine people. 
 
-  ## License
+
+
+   ## License
    [View Full MIT License](https://opensource.org/licenses/MIT)
 
   ## Table of Contents
@@ -23,17 +25,27 @@
   ## Usage
 
    In the web browser. 
-   - / will allow you to search for books 
-   - /books will allow you to see saved books
-   
+   - / will allow you to sign in or navigate to a sign up page 
+   - /home will allow you to see your connections and matches (if signed in)
+   - /dashboard will allow you to chat with your connections
+   - /settings will allow you to update some of your choices
 
    ## Resources
+   Bootcamp Activities from Week 12, 13, and 14.  
+   [MySql](https://dev.mysql.com/)  
+   [Handelbars](https://handlebarsjs.com/)  
    [W3 Schools](https://www.w3schools.com/)  
    [Stack Overflow](https://stackoverflow.com/)   
-    
+   [Plotly](https://plotly.com/javascript/)  
+   [Sequelize](https://sequelize.org/v5/)  
+   [Passportjs](http://www.passportjs.org/)  
 
   ## Collaborators
-   No need for collaboration at this time.
+  [Andrew Burke](https://github.com/AndrewBurke87)
+  [E.A. Martinez](https://github.com/E-Martinez77)
+  [Kelly Cook](https://github.com/krcook1980)  
+  [Ricky Pahn](https://github.com/basedricky)
+  [Spencer Zubal](https://github.com/szubal311)
 
   ## Questions
    Please see my [GitHub profile](https://github.com/krcook1980)  
@@ -41,5 +53,5 @@
 
    ## Screenshots
 
-  ![Screenshot](https://github.com/krcook1980/GoogleBookSearch/blob/main/client/public/scr.JPG?raw=true)
-
+  ![Screenshot](https://github.com/krcook1980/Jabs/blob/main/public/assets/scr1.JPG?raw=true)
+   ![Screenshot](https://github.com/krcook1980/Jabs/blob/main/public/assets/scr2.JPG?raw=true)

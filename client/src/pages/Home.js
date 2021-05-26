@@ -26,10 +26,6 @@ export default function Home() {
         findMatches(userData)
         setUserId(userData._id)
     }, [userData])
-
-   
-   console.log(userData)
-
   
     // Save a match to contacts
     const saveContact = (match) => {
@@ -43,7 +39,6 @@ export default function Home() {
             API.saveContact(saveContact)
                 .then(response => {
                     let thisId = response.data._id
-                    console.log("in get ", thisId)
                    API.getUser(userId)
                    .then(res => setUserData(res.data) )   
                 })
@@ -58,17 +53,7 @@ export default function Home() {
                 setMatches(response.data)
             })
     }
-    // const blockUser = (userData, blockId) => {
-    //     console.log("in home ", userData)
-    //     API.blockUser(userData._id)
-    //         .then(response => {
-    //             setContacts(response.data.myConnections)
-    //             console.log(response.data.myConnections)
-    //             console.log(contacts, " did it set")
-    //         })
-    // }
-
-
+  
     return (
         <Container className="container rounded ">
             <Navbar />
