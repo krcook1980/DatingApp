@@ -3,11 +3,10 @@ const app = express();
 
 const apiRoutes = require("./routes");
 
-const server = require('http').createServer();
+const server = require('http').createServer(app);
 const io = require('socket.io')(server);
 
 const mongoose = require("mongoose");
-const db = require('./models')
 
 const PORT = process.env.PORT || 3001;
 
@@ -74,6 +73,10 @@ app.post("/login", (req, res, next) => {
 // Use apiRoutes
 app.use(apiRoutes);
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname,"./client/build/index.html"))
+})
+
 //Whenever someone connects to chat this gets executed
 io.on('connection', function(socket) {
  
@@ -100,10 +103,7 @@ io.on('connection', function(socket) {
   });
 });
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname,"./client/build/index.html"))
-})
 
-app.listen(PORT, function() {
+server.listen(PORT, function() {
   console.log(`Server now listening on https://localhost:3001`)
 })
