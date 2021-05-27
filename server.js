@@ -87,6 +87,7 @@ io.on('connection', function(socket) {
   console.log('A user connected', id);
   
   socket.on('send-message', ({recipients, text})=>{
+    console.log("message to send in socket on server ", text)
     recipients.forEach(recipient => {
       const newRecipients = recipients.filter(r => r !== recipient)
       newRecipients.push(id)
@@ -105,10 +106,6 @@ io.on('connection', function(socket) {
 app.get("/*", (req, res) => {
   res.sendFile(path.join(__dirname,"./client/build/index.html"))
 })
-
-http.listen(5000, function() {
-  console.log('listening on *:5000');
-});
 
 app.listen(PORT, function() {
   console.log(`Server now listening on https://localhost:3001`)
