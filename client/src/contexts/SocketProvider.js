@@ -11,8 +11,8 @@ export function SocketProvider({ id, children }) {
     const [socket, setSocket] = useState();
     
     useEffect(() => {
-        const newSocket= io('https://love-is-blind.herokuapp.com', {query: {id}})
-        
+        const newSocket= io('/', {query: {id}})
+        console.log("user connected socket ", id)
         setSocket(newSocket)
         return () => newSocket.close()
     }, [id])
