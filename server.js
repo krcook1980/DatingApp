@@ -1,14 +1,10 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
 const apiRoutes = require("./routes");
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http, {
-  cors: {
-    origin: '*'
-  }
-});
+const io = require('socket.io').listen(app);
+const server = require('http').createServer();
 
 const mongoose = require("mongoose");
 const db = require('./models')
@@ -96,6 +92,7 @@ io.on('connection', function(socket) {
       })
     })
   })
+  
 
   //Whenever someone disconnects from chat this piece of code executed
   socket.on('disconnect', function () {
