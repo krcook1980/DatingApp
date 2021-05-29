@@ -18,7 +18,7 @@ export default function Login() {
     const login = () => {
        API.login({username: loginUsername, password: loginPassword})
        .then(res => {
-           console.log(res.data)
+           
            if(res.data === "No User"){
                alert("I am sorry, try again")
            }

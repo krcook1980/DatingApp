@@ -38,7 +38,7 @@ function SettingsForm() {
 
   const updateUser = () => {
     API.updateUser(userData).then(res => {
-      console.log(res.data)
+     
         setUserData(res.data)
         history.push("/home")
     })
