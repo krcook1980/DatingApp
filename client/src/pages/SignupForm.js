@@ -84,7 +84,7 @@ export default function SignupForm() {
    
     API.createUser(profile)
       .then(res => {
-        console.log(res.data)
+      
         setUserData(res.data)
            history.push("/home")
       })
