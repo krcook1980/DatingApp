@@ -12,7 +12,6 @@ export default function OpenConv() {
 
     function handleSubmit(event) {
         event.preventDefault();
-        console.log("handle send ", selectedConv.recipients)
         sendMsg(
 
             selectedConv.recipients.map(r => r.id),
@@ -27,7 +26,7 @@ export default function OpenConv() {
             <div className="flex-grow-1 overflow-auto">
                 <div className="d-flex flex-column align-items-start justify-content-end px-3">
                     {selectedConv.messages.map((message, index) => {
-                        console.log(message.text)
+                      
                         const lastMessage = selectedConv.messages.length - 1 === index
                         return (
                             <div

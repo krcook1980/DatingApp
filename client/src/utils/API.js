@@ -26,7 +26,8 @@ export default {
   login: function(userData){
    
     return axios.post("/login", userData)
+  },
+  blockUser: function(saveBlock){
+    return axios.put("/api/blockUser", saveBlock)
   }
-
-
 };

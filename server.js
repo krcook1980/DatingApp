@@ -1,17 +1,12 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 
 const apiRoutes = require("./routes");
 
-const http = require('http').Server(app);
-const io = require('socket.io')(http, {
-  cors: {
-    origin: '*'
-  }
-});
+const server = require('http').createServer(app);
+const io = require('socket.io')(server);
 
 const mongoose = require("mongoose");
-const db = require('./models')
 
 const PORT = process.env.PORT || 3001;
 
@@ -78,6 +73,10 @@ app.post("/login", (req, res, next) => {
 // Use apiRoutes
 app.use(apiRoutes);
 
+app.get("/*", (req, res) => {
+  res.sendFile(path.join(__dirname,"./client/build/index.html"))
+})
+
 //Whenever someone connects to chat this gets executed
 io.on('connection', function(socket) {
  
@@ -87,6 +86,7 @@ io.on('connection', function(socket) {
   console.log('A user connected', id);
   
   socket.on('send-message', ({recipients, text})=>{
+    console.log("message to send in socket on server ", text)
     recipients.forEach(recipient => {
       const newRecipients = recipients.filter(r => r !== recipient)
       newRecipients.push(id)
@@ -95,6 +95,7 @@ io.on('connection', function(socket) {
       })
     })
   })
+  
 
   //Whenever someone disconnects from chat this piece of code executed
   socket.on('disconnect', function () {
@@ -102,14 +103,7 @@ io.on('connection', function(socket) {
   });
 });
 
-app.get("/*", (req, res) => {
-  res.sendFile(path.join(__dirname,"./client/build/index.html"))
-})
 
-http.listen(5000, function() {
-  console.log('listening on *:5000');
-});
-
-app.listen(PORT, function() {
+server.listen(PORT, function() {
   console.log(`Server now listening on https://localhost:3001`)
 })

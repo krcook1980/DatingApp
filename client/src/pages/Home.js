@@ -17,42 +17,59 @@ export default function Home() {
     const [contacts, setContacts] = useState([])
     const [matches, setMatches] = useState([])
     const [userId, setUserId] = useState("60aaa5e10df345188c1dc60d")
-    
+
     console.log("top of home ", userData)
+    
+     
+    
+
     //Once context sets, get matches and set contacts
     useEffect(() => {
-        setContacts(userData.myConnections)
+        const filteredContacts = userData.myConnections.filter(blocked => !userData.blockedUsers.map(connection => connection.name).includes(blocked.name))
+        setContacts(filteredContacts)
         findMatches(userData)
         setUserId(userData._id)
     }, [userData])
-  
-    // Save a match to contacts
-    const saveContact = (match) => {
 
+    // ROUTES -----------------------------------
+    const saveContact = (match) => {
         const saveContact = {
             user: userId,
             matchId: match._id,
             matchName: match.username
         }
-            
-            API.saveContact(saveContact)
-                .then(response => {
-                   const thisId = response.data._id 
-                   API.getUser(thisId)
-                   .then(res => setUserData(res.data) )   
-                })
-        
+        API.saveContact(saveContact)
+            .then(response => {
+                const thisId = response.data._id
+                API.getUser(thisId)
+                    .then(res => {
+                        setUserData(res.data);
+                    })
+            })
     }
 
+    const saveBlockContact = (contact) => {
+        const saveBlock = {
+            user: userId,
+            contactName: contact.name
+        }
+        API.blockUser(saveBlock)
+            .then(response => {
+                const thisId = response.data._id
+                API.getUser(thisId)
+                    .then(res => {
+                        setUserData(res.data);
+                    })
+            })
+    }
 
     const findMatches = (userData) => {
-
         API.findMatches(userData)
             .then(response => {
                 setMatches(response.data)
             })
     }
-  
+
     return (
         <Container className="container rounded ">
             <Navbar />
@@ -63,16 +80,16 @@ export default function Home() {
                         <Col md="12">
                             <div>
                                 {contacts ?
-                                    <Contacts contacts={contacts} /> :
+                                    <Contacts contacts={contacts} saveBlockContact={saveBlockContact} /> :
                                     <div className="home text-center p-5"> <h4>Find A Genuine Connection By Adding A Contact</h4></div>}
                                 <Row className="mt-4 ">
                                     <Col md="4"></Col>
                                     <Col md="4" className="text-center">
-                                        { contacts ? 
+                                        {contacts ?
                                             <Link to="/dashboard" className="rounded-2 p-2 mb-4 btn text-center">
                                                 <h4 className="text-center">Continue Chatting</h4>
                                             </Link>
-                                        : ""}
+                                            : ""}
                                     </Col>
                                     <Col md="4"></Col>
                                 </Row>

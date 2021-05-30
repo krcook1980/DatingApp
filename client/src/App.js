@@ -10,6 +10,8 @@ import SignupForm from './pages/SignupForm';
 import Settings from './components/SettingsPage';
 import Profile from './components/Profile';
 import UserContext from "./contexts/userProvider";
+import Profile from './components/Profile';
+import { ProtectedRoute } from "./components/ProtectedRoute";
 import './App.css'
 
 function App() {
@@ -28,18 +30,20 @@ function App() {
 
   return (
     <Router basename={process.env.PUBLIC_URL}>
-      <div>
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <Switch>
-            <Route exact path='/' component={Login} />
-            <Route exact path='/Home' component={Home} />
-            <Route exact path='/Dashboard'>{dashboard}</Route>
-            <Route exact path='/SignupForm' component={SignupForm} />
-            <Route exact path='/Settings' component={Settings} />
-            <Route exact path='/Profile' component={Profile} />
-          </Switch>
-        </UserContext.Provider>
-      </div>
+
+        <div>
+          <UserContext.Provider value={{userData, setUserData}}>
+               <Switch>
+               <Route exact path='/' component={Login}/>
+                <Route exact path='/SignupForm' component={SignupForm}/>
+                <ProtectedRoute exact path ="/home" component={Home} id={id} />
+                <ProtectedRoute exact path ="/Dashboard"id={id} >{dashboard}</ProtectedRoute>
+                <ProtectedRoute exact path='/SignupForm' component={SignupForm} id={id} />
+                <ProtectedRoute exact path='/Settings' component={Settings} id={id} />
+                <ProtectedRoute exact path ="/Profile" component={Profile} id={id} />
+              </Switch>
+          </UserContext.Provider>
+       </div>
     </Router>
 
   );
