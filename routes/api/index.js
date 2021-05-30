@@ -7,5 +7,6 @@ router.use("/createUser", userRoutes)
 router.use("/saveContact", userRoutes)
 router.use("/updateUser", userRoutes)
 router.use("/getUser", userRoutes)
+router.use('/blockUser', userRoutes)
 
 module.exports = router;

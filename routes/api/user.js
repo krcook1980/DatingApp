@@ -20,4 +20,7 @@ router.route('/updateUser')
 router.route('/createUser') 
     .post(userController.createUser)
 
+ router.route('/blockUser')
+    .put(userController.blockUser)   
+
 module.exports = router;
