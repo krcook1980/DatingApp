@@ -9,6 +9,7 @@ import Home from './pages/Home';
 import SignupForm from './pages/SignupForm';
 import Settings from './components/SettingsPage'
 import UserContext from "./contexts/userProvider";
+import Profile from './components/Profile';
 import { ProtectedRoute } from "./components/ProtectedRoute";
 import './App.css'
 
@@ -37,6 +38,7 @@ function App() {
                 <ProtectedRoute exact path ="/Dashboard"id={id} >{dashboard}</ProtectedRoute>
                 <ProtectedRoute exact path='/SignupForm' component={SignupForm} id={id} />
                 <ProtectedRoute exact path='/Settings' component={Settings} id={id} />
+                <ProtectedRoute exact path ="/Profile" component={Profile} id={id} />
               </Switch>
           </UserContext.Provider>
        </div>

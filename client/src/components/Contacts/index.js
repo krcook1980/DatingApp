@@ -2,7 +2,7 @@ import React from 'react';
 import { ListGroup, Button, Col, Row } from 'react-bootstrap';
 
 
-export default function Contacts({ contacts }) {
+export default function Contacts({ contacts, saveBlockContact }) {
 
   return (
     <>
@@ -29,7 +29,7 @@ export default function Contacts({ contacts }) {
                       <h4 className="pt-3">{contact.name}</h4>
                     </Col>
                     <Col md="6">
-                      <Button className="rounded-2 m-2 d-flex">
+                      <Button className="rounded-2 m-2 d-flex" onClick={() => saveBlockContact(contact)}>
                          Remove Contact
                      </Button>
                     </Col>
