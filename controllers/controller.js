@@ -7,14 +7,15 @@ module.exports = {
        
         db.User
             .aggregate([
-                { $match: { gender: req.body.looking } },
-                { $match: { looking: req.body.gender } },
+                { $match: { gender: req.body.looking, looking: req.body.gender } },
+                
                 
             ])
             .then(returned => {
                 const filtered = returned.filter(user => !req.body.myConnections.map(connection => connection.name).includes(user.username))
-                
-                res.json(filtered)
+                const filterTwo = filtered.filter(user => !req.body.blockedUsers.map(blocked => blocked.name).includes(user.username))
+                const filterThree = filterTwo.filter(user => !user.blockedUsers.map(blocked => blocked.name).includes(req.body.username))
+                res.json(filterThree)
             })
             .catch(err => res.status(422).json(err));
     },

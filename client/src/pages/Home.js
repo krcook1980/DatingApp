@@ -51,6 +51,7 @@ export default function Home() {
     const saveBlockContact = (contact) => {
         const saveBlock = {
             user: userId,
+            userName: userData.username,
             contactName: contact.name
         }
         API.blockUser(saveBlock)
